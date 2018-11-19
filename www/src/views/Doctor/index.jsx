@@ -10,13 +10,25 @@ module.exports = {
                 "Vitamins 10mg 5x",
                 "Vitamins 20mg 5x"
             ],
+            receipt_in: false,
+            receipt_input: ""
         }
     },
     created: function () {
 
     },
     methods: {
+        new_receipt: function () {
+            this.receipts.push(this.receipt_input);
+            this.receipt_input="";
+            this.receipt_in= false;
 
+        },
+        cancel_receipt: function () {
+            this.receipt_input="";
+            this.receipt_in= false;
+
+        }
     },
     components: {
         receipt: function (resolve) {

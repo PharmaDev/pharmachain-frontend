@@ -4,7 +4,7 @@ module.exports = {
     props: ['data'],
     data: function () {
         return {
-            data: data,
+            // data: data,
         }
     },
     created: function () {

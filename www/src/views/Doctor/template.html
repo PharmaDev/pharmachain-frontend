@@ -1,7 +1,27 @@
-<div >
+<div>
     <h1>Doctor</h1>
 
-
+    <div class="ui modal" v-bind:class="{ active: receipt_in }">
+        <i class="close icon" v-on:click="cancel_receipt()"></i>
+        <div class="header">
+            New Receipt
+        </div>
+        <div class="ui segment">
+            Rezept:<br>
+            <div class="ui input">
+                <input v-model="receipt_input" type="text">
+            </div>
+        </div>
+        <div class="actions">
+            <div  v-on:click="cancel_receipt()" class="ui black deny button">
+                Nope
+            </div>
+            <div v-on:click="new_receipt()" class="ui positive right labeled icon button">
+                Yep, send
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
 
     <div class="ui action input" v-if="!patient">
         <input type="text" placeholder="Insurance ID...">
@@ -12,11 +32,7 @@
         <div class="ui grid">
             <!--<div class="ui two column divided grid">-->
             <div class="stretched row">
-                <!--<div class="column">-->
-                    <!--<div class="ui segment">-->
-                        <!--1-->
-                    <!--</div>-->
-                <!--</div>-->
+
                 <div class="three wide column">
                     <div class="ui segment">
                         <div class="ui small image">
@@ -25,9 +41,6 @@
                             05.05.1985
                         </div>
                     </div>
-                    <!--<div class="ui segment">-->
-                       <!---->
-                    <!--</div>-->
                 </div>
                 <div class="thirteen wide column">
                     <div class="ui segment">
@@ -39,9 +52,37 @@
 
                         </div>
                     </div>
+
+                    <div class="ui segment">
+                        Rezept:<br>
+                        <div class="ui action input">
+                            <input v-model="receipt_input" type="text">
+                            <button v-on:click="new_receipt()" class="ui button">Go</button>
+                        </div>
+                        <button v-on:click="receipt_in=true" class="positive ui button" style="float:right">Rezept</button>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
+
 </div>
+
+<!--<div style="width: 500px; height: 300px; position: absolute;">-->
+<!--Eingabe-->
+<!--</div>-->
+
+<!--<div v-if="true" style="position: absolute; left: 50%;">-->
+<!--<div style="position: relative; left: -50%; border: dotted blue 1px;">-->
+<!--Rezept:<br>-->
+<!--<div class="ui action input" v-if="patient">-->
+<!--<input v-model="receipt_input" type="text">-->
+<!--<button v-on:click="new_receipt()" class="ui button">Go</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--</div>-->

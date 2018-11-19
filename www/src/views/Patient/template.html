@@ -1,23 +1,37 @@
 <div>
     <h1>Patient</h1>
-tav: {{menu}}
+
+    <div class="ui modal" v-bind:class="{ active: address_in }">
+        <i class="close icon" v-on:click=""></i>
+        <div class="header">
+            New Receipt
+        </div>
+        <div class="ui segment">
+            Rezept:<br>
+            <div class="ui input">
+                <input  type="text">
+            </div>
+        </div>
+        <div class="actions">
+            <div  v-on:click="" class="ui black deny button">
+                Nope
+            </div>
+            <div v-on:click="" class="ui positive right labeled icon button">
+                Yep, send
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
 
     <div class="ui top attached tabular menu">
-        <a class="item" v-bind:class="{ active: menu=='Receipts' }" v-on:click="menu='Receipts'">
+        <a class="item" v-bind:class="{ active: menu=='Receipts' }" v-on:click="menu='Receipts'"
+           v-on:click="show_pharmacy=false">
             Receipts
         </a>
-        <a class="item" v-bind:class="{ active: menu=='Pharmacy' }" v-on:click="menu='Pharmacy'">
-            Pharmacy
+        <a class="item" v-bind:class="{ active: menu=='Pharmacy' }" v-on:click="menu='Pharmacy'" >
+            Offers
         </a>
 
-        <!--<div class="right menu">-->
-            <!--<div class="item">-->
-                <!--<div class="ui transparent icon input">-->
-                    <!--<input type="text" placeholder="Search users...">-->
-                    <!--<i class="search link icon"></i>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
     <div class="ui bottom attached segment">
         <p v-if="menu=='Receipts'">Übersicht der Rezepte</p>
@@ -31,5 +45,53 @@ tav: {{menu}}
         </template>
 
     </div>
+
+    <div class="ui items" v-if="menu=='Pharmacy'">
+        <!--<button v-on:click="show_map()">map</button>-->
+        <button v-on:click="get_d_adress()" class="positive ui button">Delivery address</button>
+
+        <!--<div class="ui action input" v-if="!patient">-->
+            <!--<input type="text" placeholder="ZIP">-->
+            <!--<button v-on:click="show_map()" class="ui button">Search</button>-->
+        <!--</div>-->
+
+        <div class="ui grid">
+            <!--<div class="ui two column divided grid">-->
+            <div class="stretched row">
+
+
+                <div class="three wide column">
+
+                    <template v-if="show_pharmacy">
+                        <div class="ui segment">
+                            Elster Apotheke<br>
+                            Grassistraße 9,<br>
+                            04107 Leipzig
+                        </div>
+                        <div class="ui segment">
+                            Mozart-Apotheke<br>
+                            Karl-Liebknecht-Straße 10,<br>
+                            04107 Leipzig
+                        </div>
+                        <div class="ui segment">
+                            Taurus-Apotheke<br>
+                            Hohe Str. 30,<br>
+                            04107 Leipzig
+                        </div>
+                    </template>
+
+                </div>
+
+                <div class="thirteen wide column">
+
+                    <div id="map" style="float: right; height: 400px;width: 100%;"></div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
 
 </div>

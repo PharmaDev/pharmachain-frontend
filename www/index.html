@@ -10,8 +10,8 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src * 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;">
+    <!--<meta http-equiv="Content-Security-Policy"-->
+          <!--content="default-src * 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;">-->
 
     <!--content="default-src * 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
     <meta name="format-detection" content="telephone=no">
@@ -21,10 +21,13 @@
     <link rel="stylesheet" type="text/css" href="build/index.css">
     <link rel="stylesheet" href="styles/semantic.min.css">
     <script src="scripts/semantic.min.js"></script>
+    <script src="scripts/jquery.min.js"></script>
     <!--Fonts-->
     <link href='styles/fonts/fonts.css' rel='stylesheet'>
 
     <title>Pharmachain</title>
+
+
 </head>
 <body>
 <div id="app">
@@ -46,8 +49,25 @@
     <doctor v-if="rolle=='doctor'"></doctor>
 
 
+
 </div>
+    <!--<script>-->
+        <!--// Initialize and add the map-->
+        <!--function initMap() {-->
+            <!--// The location of Uluru-->
+            <!--var uluru = {lat: -25.344, lng: 131.036};-->
+            <!--// The map, centered at Uluru-->
+            <!--var map = new google.maps.Map(-->
+                <!--document.getElementById('map'), {zoom: 4, center: uluru});-->
+            <!--// The marker, positioned at Uluru-->
+            <!--var marker = new google.maps.Marker({position: uluru, map: map});-->
+        <!--}-->
+    <!--</script>-->
+
+
 <script type="text/javascript" src="build/build.js"></script>
 <!--<script type="text/javascript" src="cordova.js"></script>-->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVN8vbsRyqMNcAgcYGnlZSkNxDfmHt0Uc&callback=initMap"
+        type="text/javascript"></script>
 </body>
 </html>
