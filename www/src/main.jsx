@@ -9,7 +9,7 @@ window.app = new Vue({
     el: '#app',
     // store: store,
     data: {
-        rolle: "doctor",
+        rolle: null,
     },
 
     mounted: function () {

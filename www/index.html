@@ -10,33 +10,18 @@
 
 <body>
 <div id="app">
-   <doctor></doctor>
-
-    <!--<div v-if="rolle!='patient' && rolle!='doctor'">
-        <h1>Pharmachain</h1>
-        Login
-        <input v-model="rolle" placeholder="Rolle">
+    <div v-if="!rolle">
+        <button v-on:click="rolle='doctor'">Doctor</button>
+        <button v-on:click="rolle='patient'">Patient</button>
+        <button v-on:click="rolle='pharmacy'">Pharmacy</button>
     </div>
-
-    <div v-if="rolle=='patient' || rolle=='doctor'">
-        <button v-on:click="rolle=''">Logout</button>
-    </div>
-
-
+    <doctor v-if="rolle=='doctor'"></doctor>
     <patient v-if="rolle=='patient'"></patient>
-
-    <doctor v-if="rolle=='doctor'"></doctor>-->
-
 
 </div>
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/vue-material@beta"></script>
-<script>
-
-    new Vue({
-        el: '#app'
-    })
-</script>
+<script type="text/javascript" src="build/build.js"></script>
 <style lang="scss" scoped>
     .md-app {
         border: 1px solid rgba(#000, .12);

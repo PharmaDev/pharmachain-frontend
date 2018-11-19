@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="52beb63b-57d3-4963-84ac-e90ba33ff27d" name="Default" comment="" />
+    <list default="true" id="52beb63b-57d3-4963-84ac-e90ba33ff27d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
+      <change beforePath="$PROJECT_DIR$/www/src/main.jsx" afterPath="$PROJECT_DIR$/www/src/main.jsx" />
+      <change beforePath="$PROJECT_DIR$/www/src/views/Doctor/template.html" afterPath="$PROJECT_DIR$/www/src/views/Doctor/template.html" />
+    </list>
     <ignored path="$PROJECT_DIR$/www/build/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,12 +43,13 @@
         <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/template.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="243">
-              <caret line="85" column="13" lean-forward="true" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
+              <caret line="23" column="83" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="83" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#md-card-media#0;n#md-card#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#md-card-media#0;n#md-card#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#md-button#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -78,8 +83,8 @@
       <file leaf-file-name="main.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/main.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
               <folding>
                 <element signature="e#1#22#0" expanded="true" />
               </folding>
@@ -100,8 +105,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="36" column="18" lean-forward="false" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+            <state relative-caret-position="187">
+              <caret line="23" column="61" lean-forward="false" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -150,10 +155,10 @@
         <option value="$PROJECT_DIR$/www/src/views/Receipte/index.jsx" />
         <option value="$PROJECT_DIR$/www/src/views/Patient/template.html" />
         <option value="$PROJECT_DIR$/www/src/views/Patient/index.jsx" />
-        <option value="$PROJECT_DIR$/www/src/main.jsx" />
         <option value="$PROJECT_DIR$/www/src/views/Receipte/template.html" />
         <option value="$PROJECT_DIR$/www/src/views/Doctor/index.jsx" />
         <option value="$PROJECT_DIR$/www/src/views/Doctor/template.html" />
+        <option value="$PROJECT_DIR$/www/src/main.jsx" />
         <option value="$PROJECT_DIR$/www/index.html" />
       </list>
     </option>
@@ -386,12 +391,12 @@
       <option name="presentableId" value="Default" />
       <updated>1542642293721</updated>
       <workItem from="1542642295187" duration="12976000" />
-      <workItem from="1542657204347" duration="6738000" />
+      <workItem from="1542657204347" duration="7503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19714000" />
+    <option name="totallyTimeSpent" value="20479000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -468,6 +473,7 @@
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#md-card-media#0;n#md-card#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#md-card-media#0;n#md-card#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#md-button#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
@@ -548,16 +554,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/main.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/src/views/Receipte/template.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -578,20 +574,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="85" column="13" lean-forward="true" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#md-card-media#0;n#md-card#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#md-card-media#0;n#md-card#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#md-button#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -600,10 +582,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="23" column="83" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="83" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-card-media#0;n#md-card#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#md-card-media#0;n#md-card#0;n#div#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-button#0;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/main.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding>
+            <element signature="e#1#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="36" column="18" lean-forward="false" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+        <state relative-caret-position="187">
+          <caret line="23" column="61" lean-forward="false" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
           <folding />
         </state>
       </provider>
