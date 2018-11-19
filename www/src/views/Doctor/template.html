@@ -1,0 +1,47 @@
+<div >
+    <h1>Doctor</h1>
+
+
+
+    <div class="ui action input" v-if="!patient">
+        <input type="text" placeholder="Insurance ID...">
+        <button v-on:click="patient=true" class="ui button">Search</button>
+    </div>
+
+    <div v-if="patient">
+        <div class="ui grid">
+            <!--<div class="ui two column divided grid">-->
+            <div class="stretched row">
+                <!--<div class="column">-->
+                    <!--<div class="ui segment">-->
+                        <!--1-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="three wide column">
+                    <div class="ui segment">
+                        <div class="ui small image">
+                            <img src="https://uploads-ssl.webflow.com/56475567c5c0176e6207323c/56a67edcb627cde433079bb3_Passfoto_biometrisch_ruegen.png">
+                            Maxi Musterman <br>
+                            05.05.1985
+                        </div>
+                    </div>
+                    <!--<div class="ui segment">-->
+                       <!---->
+                    <!--</div>-->
+                </div>
+                <div class="thirteen wide column">
+                    <div class="ui segment">
+                        <div class="ui items">
+                            <template v-for="receipt in receipts">
+                                <!--{{receipt}}-->
+                                <receipt v-bind:data="receipt"></receipt>
+                            </template>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

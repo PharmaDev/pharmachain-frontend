@@ -1,0 +1,35 @@
+<div>
+    <h1>Patient</h1>
+tav: {{menu}}
+
+    <div class="ui top attached tabular menu">
+        <a class="item" v-bind:class="{ active: menu=='Receipts' }" v-on:click="menu='Receipts'">
+            Receipts
+        </a>
+        <a class="item" v-bind:class="{ active: menu=='Pharmacy' }" v-on:click="menu='Pharmacy'">
+            Pharmacy
+        </a>
+
+        <!--<div class="right menu">-->
+            <!--<div class="item">-->
+                <!--<div class="ui transparent icon input">-->
+                    <!--<input type="text" placeholder="Search users...">-->
+                    <!--<i class="search link icon"></i>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <div class="ui bottom attached segment">
+        <p v-if="menu=='Receipts'">Übersicht der Rezepte</p>
+    </div>
+
+
+    <div class="ui items" v-if="menu=='Receipts'">
+        <template v-for="receipt in receipts">
+            <!--{{receipt}}-->
+            <receipt v-bind:data="receipt"></receipt>
+        </template>
+
+    </div>
+
+</div>
