@@ -1,36 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <!--
-    Customize this policy to fit your own app's needs. For more guidance, see:
-        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-    Some notes:
-        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-            * Enable inline JS: add 'unsafe-inline' to default-src
-    -->
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src * 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;">
-
-    <!--content="default-src * 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport"
-          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" type="text/css" href="build/index.css">
-    <link rel="stylesheet" href="styles/semantic.min.css">
-    <script src="scripts/semantic.min.js"></script>
-    <!--Fonts-->
-    <link href='styles/fonts/fonts.css' rel='stylesheet'>
-
-    <title>Pharmachain</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/vue-material.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
 </head>
+
 <body>
 <div id="app">
+   <doctor></doctor>
 
-
-    <div v-if="rolle!='patient' && rolle!='doctor'">
+    <!--<div v-if="rolle!='patient' && rolle!='doctor'">
         <h1>Pharmachain</h1>
         Login
         <input v-model="rolle" placeholder="Rolle">
@@ -43,11 +25,29 @@
 
     <patient v-if="rolle=='patient'"></patient>
 
-    <doctor v-if="rolle=='doctor'"></doctor>
+    <doctor v-if="rolle=='doctor'"></doctor>-->
 
 
 </div>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-material@beta"></script>
+<script>
+
+    new Vue({
+        el: '#app'
+    })
+</script>
+<style lang="scss" scoped>
+    .md-app {
+        border: 1px solid rgba(#000, .12);
+    }
+
+    // Demo purposes only
+       .md-drawer {
+           width: 230px;
+           max-width: calc(100vw - 125px);
+       }
+</style>
 <script type="text/javascript" src="build/build.js"></script>
-<!--<script type="text/javascript" src="cordova.js"></script>-->
 </body>
 </html>

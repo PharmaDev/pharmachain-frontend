@@ -1,6 +1,8 @@
 
-import Vue from 'vue';
-import $ from "jquery";
+import Vue from 'vue'
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
+
 
 
 window.app = new Vue({
@@ -12,6 +14,7 @@ window.app = new Vue({
 
     mounted: function () {
         console.log("vue mounted ");
+        Vue.use(VueMaterial)
 
     },
     methods: {},

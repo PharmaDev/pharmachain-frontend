@@ -1,18 +1,7 @@
-<div class="item" style="padding: 1rem; border-style: dashed;">
-    <!--<div class="ui small image">-->
-        <!--<img src="/images/wireframe/image.png">-->
-    <!--</div>-->
-    <div class="middle aligned content">
-        <div class="header">
-            {{data}}
-        </div>
-        <div class="description">
-            <p></p>
-        </div>
-        <div class="extra">
-            <div class="ui right floated button">
-                Action
-            </div>
-        </div>
-    </div>
-</div>
+<md-card style="margin-bottom: 15px;">
+    <md-card-content style="padding-bottom: 5px">
+        <p class="md-title">{{data.name}}</p>
+        <p class="md-body-1">Date: {{data.date}}</p>
+        <md-badge v-if="!data.active" class="md-square" md-content="Archive" style="background: gray; top: 15px; right: 15px" ></md-badge>
+    </md-card-content>
+</md-card>

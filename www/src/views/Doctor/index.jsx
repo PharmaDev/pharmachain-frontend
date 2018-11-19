@@ -4,16 +4,15 @@ module.exports = {
     data: function () {
         return {
             patient:false,
+            showDialog: false,
             receipts: [
-                "Paracetamol 500mg 50x",
-                "Protozoen 50mg 10x",
-                "Vitamins 10mg 5x",
-                "Vitamins 20mg 5x"
+                {name: "Paracetamol 500mg 50x", date: "12.04.2018"},
+                {name: "Protozoen 50mg 10x", date: "21.09.2018"}
             ],
         }
     },
     created: function () {
-
+        Vue.use(VueMaterial.default)
     },
     methods: {
 
