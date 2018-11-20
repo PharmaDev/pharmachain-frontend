@@ -30,6 +30,28 @@ module.exports = {
 
     },
     methods: {
+        acceptOrder(){
+            let self = this;
+            this.showDialogOffer = false
+
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.99.101:3000/api/de.pharmachain.OfferAccepted',
+                data: JSON.stringify({
+                    $class: "de.pharmachain.OfferAccepted",
+                    receipt: "resource:de.pharmachain.Receipt#0001",
+                    acceptedOffer: "resource:de.pharmachain.Offer#0009"
+                }),
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        },
         reload_r() {
 
             this.receipts = [];

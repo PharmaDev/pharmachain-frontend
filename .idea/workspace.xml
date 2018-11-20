@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e29d9e11-4947-457b-83ac-2576b5284b5f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/src/views/Doctor/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Doctor/template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/src/views/Offer/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Offer/template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/src/views/Patient/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Patient/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/src/views/Patient/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Patient/template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/src/views/Pharmacy/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Pharmacy/template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/src/views/Receipte/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Receipte/template.html" afterDir="false" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,56 +15,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/template.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="66" column="61" selection-start-line="66" selection-start-column="56" selection-end-line="66" selection-end-column="61" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#3;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="template.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/src/views/Patient/template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+            <state relative-caret-position="137">
+              <caret line="20" column="64" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/src/views/Offer/template.html">
+        <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/src/views/Receipte/template.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-              <folding>
-                <element signature="n#style#0;n#md-card#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#md-card-content#0;n#div#0;n#md-card#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="242">
+              <caret line="39" column="64" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -75,8 +36,8 @@
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/views/Patient/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
+            <state relative-caret-position="200">
+              <caret line="40" column="35" lean-forward="true" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -90,8 +51,10 @@
       <find>for</find>
       <find>save</find>
       <find>Confirm</find>
-      <find>cached</find>
       <find>price</find>
+      <find>Confirm order from pharmacy</find>
+      <find>cached</find>
+      <find>Name Vorname</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -109,17 +72,17 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/www/src/views/Login/template.html" />
         <option value="$PROJECT_DIR$/www/src/views/Receiptes/template.html" />
-        <option value="$PROJECT_DIR$/www/src/views/Doctor/template.html" />
         <option value="$PROJECT_DIR$/www/src/main.jsx" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/src/views/Doctor/index.jsx" />
         <option value="$PROJECT_DIR$/www/src/views/Receipte/index.jsx" />
         <option value="$PROJECT_DIR$/www/src/views/Pharmacy/template.html" />
-        <option value="$PROJECT_DIR$/www/src/views/Patient/template.html" />
         <option value="$PROJECT_DIR$/www/src/views/Receipte/template.html" />
-        <option value="$PROJECT_DIR$/www/src/views/Patient/index.jsx" />
-        <option value="$PROJECT_DIR$/www/src/views/Offer/template.html" />
         <option value="$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx" />
+        <option value="$PROJECT_DIR$/www/src/views/Offer/template.html" />
+        <option value="$PROJECT_DIR$/www/src/views/Patient/index.jsx" />
+        <option value="$PROJECT_DIR$/www/src/views/Doctor/template.html" />
+        <option value="$PROJECT_DIR$/www/src/views/Patient/template.html" />
       </list>
     </option>
   </component>
@@ -145,9 +108,9 @@
       <path value="$PROJECT_DIR$/semantic/tasks/config/admin/templates/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="93" />
-    <option name="width" value="1617" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="92" />
+    <option name="width" value="1618" />
     <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -240,6 +203,9 @@
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -348,27 +314,28 @@
       <updated>1542642293721</updated>
       <workItem from="1542642295187" duration="12976000" />
       <workItem from="1542657204347" duration="13174000" />
-      <workItem from="1542702201673" duration="8143000" />
+      <workItem from="1542702201673" duration="9370000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34296000" />
+    <option name="totallyTimeSpent" value="35523000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="75" y="0" width="1293" height="864" extended-state="0" />
+    <frame x="75" y="0" width="1293" height="864" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Gulp" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.16242038" />
       <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.5824176" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32884097" />
       <window_info id="npm" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.33241758" />
+      <window_info id="Gulp" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.16242038" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="5" />
       <window_info id="Structure" order="4" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="2" weight="1.0" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -377,7 +344,6 @@
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="5" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,13 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="65" column="52" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/src/views/Receipte/template.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -658,27 +617,6 @@
             <element signature="n#style#0;n#md-card-content#0;n#div#0;n#md-card#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Patient/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Patient/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Offer/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -695,8 +633,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="55">
           <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Offer/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="9" lean-forward="true" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Patient/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="40" column="35" lean-forward="true" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="39" column="64" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Patient/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="20" column="64" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
         </state>
       </provider>
     </entry>
