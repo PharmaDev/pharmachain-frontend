@@ -2,9 +2,10 @@
     <div @click="onClickCard()">
         <md-card-content style="padding-bottom: 5px">
             <p class="md-title">{{data.name}}</p>
-            <p class="md-body-1">Delivery Date: {{data.date}}</p>
-            <p class="md-body-1">Pharmacy: {{data.date}}</p>
-            <md-badge v-if="!data.active" class="md-square" :md-content="data.dist" style="background: green; top: 15px; right: 15px" ></md-badge>
+            <p class="md-body-1">Delivery: {{data.date}}</p>
+            <p class="md-body-1">Pharmacy: Apotheke</p>
+            <md-badge v-if="!data.active" class="md-square" :md-content="data.dist"
+                      style="background: green; top: 15px; right: 15px"></md-badge>
         </md-card-content>
     </div>
 </md-card>

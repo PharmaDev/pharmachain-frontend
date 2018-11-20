@@ -8,8 +8,8 @@ module.exports = {
                 // {name: "Protozoen 50mg 10x", date: "21.09.2018"}
             ],
             offers: [
-                {name: "Paracetamol 500mg 50x", date: "12.04.2018", dist: "1.3km"},
-                {name: "Protozoen 50mg 10x", date: "21.09.2018", dist: "500m"}
+                {name: "Paracetamol 500mg 50x", date: "40 min", dist: "1.3km"},
+                // {name: "Protozoen 50mg 10x", date: "21.09.2018", dist: "500m"}
             ],
             status: "active",
             showDialog: false,
@@ -26,32 +26,37 @@ module.exports = {
     created: function () {
         this.checkNewPosts()
 
-        let self = this;
-
-        $.ajax({
-            type: 'GET',
-            contentType: "application/json",
-            Accept: "application/json",
-            url: 'http://192.168.99.101:3000/api/de.pharmachain.Receipt',
-            success: function (data) {
-                console.log(data);
-                data.forEach(function (d) {
-                    console.log(d.prescription)
-                    self.receipts.push({
-                        id: d.id,
-                        name: d.prescription,
-                        date: "20.11.2018"
-                    });
-                    self.r_index = d.id
-                })
-            },
-            error: function (response) {
-                console.log(response)
-            }
-        });
+        this.reload_r();
 
     },
     methods: {
+        reload_r() {
+
+            this.receipts = [];
+            let self = this;
+
+            $.ajax({
+                type: 'GET',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.99.101:3000/api/de.pharmachain.Receipt',
+                success: function (data) {
+                    console.log(data);
+                    data.forEach(function (d) {
+                        console.log(d.prescription)
+                        self.receipts.push({
+                            id: d.id,
+                            name: d.prescription,
+                            date: "20.11.2018"
+                        });
+                        self.r_index = d.id
+                    })
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        },
         selectOption(value) {
             console.log(value)
 

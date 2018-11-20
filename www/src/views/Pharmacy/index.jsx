@@ -13,7 +13,7 @@ module.exports = {
                 {name: "Protozoen 50mg 10x", details: "details", address: "address", delivery: "delivery info"}
             ],
             billings: [
-                {name: "Paracetamol 500mg 50x", details: "details", address: "address", price: "price"},
+                {name: "Paracetamol 500mg 50x", details: "Bayer", address: "address", price: "20 Euro"},
             ],
             status: "active",
             showDialog: false,
@@ -63,6 +63,39 @@ module.exports = {
         this.checkNewPosts()
     },
     methods: {
+        offer() {
+
+            this.showDialogOrder = false;
+
+            let self = this;
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.99.101:3000/api/de.pharmachain.Offer',
+                data: JSON.stringify({
+
+                    $class: "de.pharmachain.Offer",
+                    id: "0009",
+                    description: "Paracetamol 500mg 50x",
+                    delivery: "40 min",
+                    insuranceCost: 10,
+                    patientCost: 10,
+                    pharmacy: "resource:de.pharmachain.Pharmacy#3333",
+                    receipt: "resource:de.pharmachain.Receipt#0001"
+
+                }),
+                success: function (data) {
+                    self.receipts.push({
+                        name: self.med_name + ' ' + self.med_dosage + ' ' + self.med_qan,
+                        date: "20.11.2018"
+                    })
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        },
         selectOption(value) {
             this.showDialog = true;
             this.selectedReceipt = value;
@@ -79,15 +112,15 @@ module.exports = {
             this.clearNewPosts();
             this.currentTab = newTab;
         },
-        clearCheckPosts () {
+        clearCheckPosts() {
             window.clearInterval(this.checkInterval)
             this.checkInterval = null
         },
-        clearNewPosts () {
+        clearNewPosts() {
             this.clearCheckPosts()
             this.newPosts = 0
         },
-        checkNewPosts (activeTab) {
+        checkNewPosts(activeTab) {
             if (activeTab !== 'tab-offers' && !this.checkInterval) {
                 this.checkInterval = window.setInterval(() => {
                     if (this.newPosts === 99) {
