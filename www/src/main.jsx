@@ -27,6 +27,9 @@ window.app = new Vue({
         },
         doctor: function (resolve) {
             require(['./views/Doctor/index.jsx'], resolve)
+        },
+        pharmacy: function (resolve) {
+            require(['./views/Pharmacy/index.jsx'], resolve)
         }
 
 

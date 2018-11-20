@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container"  style="height: 100%">
     <md-app md-waterfall md-mode="fixed">
         <md-app-toolbar class="md-primary">
             <span class="md-title">PharmaChain</span><span class="md-body-1" style="margin-top: 2px; margin-left: 7px">┃ Doctor</span>
@@ -52,9 +52,6 @@
                                 <receipt v-bind:data="receipt"></receipt>
                             </template>
                         </div>
-                        <md-button class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;" v-on:click="showDialog = true">
-                            <md-icon>add</md-icon>
-                        </md-button>
                     </div>
                 </div>
 
@@ -85,4 +82,7 @@
             </md-dialog>
         </md-app-content>
     </md-app>
+    <md-button v-if="patient" class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;" v-on:click="showDialog = true">
+        <md-icon>add</md-icon>
+    </md-button>
 </div>
