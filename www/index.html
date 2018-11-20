@@ -9,8 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
-<body>
-<div id="app">
+<body style="height: 100%">
+<div id="app" style="height: 100%">
     <div v-if="!rolle">
         <button v-on:click="rolle='doctor'">Doctor</button>
         <button v-on:click="rolle='patient'">Patient</button>
@@ -18,7 +18,7 @@
     </div>
     <doctor v-if="rolle=='doctor'"></doctor>
     <patient v-if="rolle=='patient'"></patient>
-
+    <pharmacy v-if="rolle=='pharmacy'"></pharmacy>
 </div>
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/vue-material@beta"></script>
@@ -27,24 +27,25 @@
     .md-app {
         border: 1px solid rgba(#000, .12);
     }
-   .badge {
-       width: 19px;
-       height: 19px;
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       position: absolute;
-       top: 2px;
-       right: 2px;
-       background: red;
-       border-radius: 100%;
-       color: #fff;
-       font-size: 10px;
-       font-style: normal;
-       font-weight: 600;
-       letter-spacing: -.05em;
-       font-family: 'Roboto Mono', monospace;
-   }
+
+    .badge {
+        width: 19px;
+        height: 19px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        background: red;
+        border-radius: 100%;
+        color: #fff;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: -.05em;
+        font-family: 'Roboto Mono', monospace;
+    }
 </style>
 <script type="text/javascript" src="build/build.js"></script>
 </body>
