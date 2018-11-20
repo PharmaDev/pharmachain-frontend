@@ -62,22 +62,22 @@
                 <md-dialog-content>
 
                     <md-field>
-                        <label>Medicine Name</label>
-                        <md-input></md-input>
+                        <label >Medicine Name</label>
+                        <md-input v-model="med_name"></md-input>
                     </md-field>
                     <md-field>
                         <label>Medicine Dosage</label>
-                        <md-input></md-input>
+                        <md-input v-model="med_dosage"></md-input>
                     </md-field>
                     <md-field>
                         <label>Quantity</label>
-                        <md-input></md-input>
+                        <md-input v-model="med_qan"></md-input>
                     </md-field>
                 </md-dialog-content>
 
                 <md-dialog-actions>
                     <md-button class="md-primary" @click="showDialog = false">Close</md-button>
-                    <md-button class="md-primary" @click="showDialog = false">Save</md-button>
+                    <md-button class="md-primary" @click="new_receipt()">Save</md-button>
                 </md-dialog-actions>
             </md-dialog>
         </md-app-content>
