@@ -1,7 +1,9 @@
-<md-card style="margin-bottom: 15px;">
-    <md-card-content style="padding-bottom: 5px">
-        <p class="md-title">{{data.name}}</p>
-        <p class="md-body-1">Date: {{data.date}}</p>
-        <md-badge v-if="!data.active" class="md-square" md-content="Archive" style="background: gray; top: 15px; right: 15px" ></md-badge>
-    </md-card-content>
+<md-card style="margin-bottom: 15px;" v-on:click="click">
+    <div @click="onClickCard()">
+        <md-card-content style="padding-bottom: 5px">
+            <p class="md-title">{{data.name}}</p>
+            <p class="md-body-1">Date: {{data.date}}</p>
+            <md-badge v-if="!data.active" class="md-square" md-content="Archive" style="background: gray; top: 15px; right: 15px" ></md-badge>
+        </md-card-content>
+    </div>
 </md-card>

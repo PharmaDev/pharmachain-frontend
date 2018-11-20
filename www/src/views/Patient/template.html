@@ -1,35 +1,137 @@
-<div>
-    <h1>Patient</h1>
-tav: {{menu}}
+<div class="page-container">
+    <md-app md-waterfall md-mode="fixed">
+        <md-app-toolbar class="md-primary">
+            <span class="md-title">PharmaChain </span><span class="md-body-1" style="margin-top: 2px; margin-left: 7px">┃ Patient</span>
+        </md-app-toolbar>
 
-    <div class="ui top attached tabular menu">
-        <a class="item" v-bind:class="{ active: menu=='Receipts' }" v-on:click="menu='Receipts'">
-            Receipts
-        </a>
-        <a class="item" v-bind:class="{ active: menu=='Pharmacy' }" v-on:click="menu='Pharmacy'">
-            Pharmacy
-        </a>
+        <md-app-content>
+            <div >
 
-        <!--<div class="right menu">-->
-            <!--<div class="item">-->
-                <!--<div class="ui transparent icon input">-->
-                    <!--<input type="text" placeholder="Search users...">-->
-                    <!--<i class="search link icon"></i>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    </div>
-    <div class="ui bottom attached segment">
-        <p v-if="menu=='Receipts'">Übersicht der Rezepte</p>
-    </div>
+                <div>
+                    <div class="md-layout">
+                        <div class="md-layout-item md-size-30" style="max-width: 200px">
+                            <md-card>
+                                <md-card-media style="text-align: center; padding-top: 40px">
+                                    <img style=" width: 150px; border-radius: 150px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsAUelg7yg0mepGMf-N93hh6E9XrLnKwsKa4YEQ6swhDknk4F9eQ" alt="People">
+                                </md-card-media>
 
+                                <md-card-header>
+                                    <div class="md-title">Name Vorname</div>
+                                    <div class="md-subhead">Birthday: 12.07.1995</div>
+                                </md-card-header>
 
-    <div class="ui items" v-if="menu=='Receipts'">
-        <template v-for="receipt in receipts">
-            <!--{{receipt}}-->
-            <receipt v-bind:data="receipt"></receipt>
-        </template>
+                                <md-card-content>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.
+                                </md-card-content>
+                            </md-card>
+                        </div>
+                        <div class="md-layout-item">
+                            <md-card>
+                                <md-tabs @md-changed="changeTab">
+                                    <template slot="md-tab" slot-scope="{ tab }">
+                                        {{ tab.label }} <i class="badge" v-if="tab.data.badge">{{ tab.data.badge }}</i>
+                                    </template>
+                                    <md-tab id="tab-receipts" md-label="My Receipts"></md-tab>
+                                    <md-tab id="tab-offers" md-label="Offers" :md-template-data="{ badge: newPosts }" @click="clearNewPosts"></md-tab>
+                                </md-tabs>
+                            </md-card>
+                            <div v-if="currentTab == 'tab-receipts'">
+                                <p class="md-display-2" style="margin: 15px; display: inline-block">My Receipts</p>
+                                <md-field style="float: right; margin-right: 15px; width: 150px">
+                                    <md-select v-model="status" name="status" id="country" placeholder="Status">
+                                        <md-option value="active">Active</md-option>
+                                        <md-option value="in_delivery">In Delivery</md-option>
+                                        <md-option value="archive">Archive</md-option>
+                                    </md-select>
+                                </md-field>
+                                <template v-for="receipt in receipts">
+                                    <receipt v-bind:data="receipt" v-bind:select="selectOption"></receipt>
+                                </template>
+                            </div>
+                            <div v-if="currentTab == 'tab-offers'">
+                                <p class="md-display-2" style="margin: 15px; display: inline-block">Offers</p>
+                                <template v-for="offer in offers">
+                                    <offer v-bind:data="offer" v-bind:select="selectOffer"></offer>
+                                </template>
+                            </div>
 
-    </div>
+                        </div>
+                    </div>
+                    <md-button class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;" v-on:click="reload()">
+                        <md-icon>cached</md-icon>
+                    </md-button>
+                </div>
 
+            </div>
+            <md-dialog :md-active.sync="showDialog">
+                <md-dialog-title>Address of delivery:</md-dialog-title>
+
+                <md-dialog-content>
+                    <div class="md-layout md-gutter">
+                        <div class="md-layout-item md-small-size-40">
+                            <md-field>
+                                <label>Post code</label>
+                                <md-input></md-input>
+                            </md-field>
+                        </div>
+                        <div class="md-layout-item md-small-size-60">
+                            <md-field>
+                                <label>City</label>
+                                <md-input></md-input>
+                            </md-field>
+                        </div>
+                    </div>
+                    <md-field>
+                        <label>Street, House number</label>
+                        <md-input></md-input>
+                    </md-field>
+                </md-dialog-content>
+
+                <md-dialog-actions>
+                    <md-button class="md-default" @click="showDialog = false">Close</md-button>
+                    <md-button class="md-primary" @click="showDialog = false">Save</md-button>
+                </md-dialog-actions>
+            </md-dialog>
+            <md-dialog :md-active.sync="showDialogOffer">
+                <md-dialog-title>Confirm order from pharmacy:</md-dialog-title>
+
+                <md-dialog-content>
+                    <p>
+                        <span class="md-body-2">Name: </span>
+                        <span class="md-body-1">Apotheke 1545612 </span>
+                    </p>
+                    <p>
+                        <span class="md-body-2">Address: </span>
+                        <span class="md-body-1">asfdh hdsaj fhjk </span>
+                    </p>
+                </md-dialog-content>
+
+                <md-dialog-actions>
+                    <md-button class="md-default" @click="showDialogOffer = false">Cancel</md-button>
+                    <md-button class="md-primary" @click="showDialogOffer = false">Confirm</md-button>
+                </md-dialog-actions>
+            </md-dialog>
+        </md-app-content>
+    </md-app>
+    <style>
+        .badge {
+            width: 19px;
+            height: 19px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: red;
+            border-radius: 100%;
+            color: #fff;
+            font-size: 10px;
+            font-style: normal;
+            font-weight: 600;
+            letter-spacing: -.05em;
+            font-family: 'Roboto Mono', monospace;
+        }
+    </style>
 </div>
+
