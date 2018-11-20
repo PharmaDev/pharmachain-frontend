@@ -71,25 +71,25 @@
                         <div class="md-layout-item md-small-size-40">
                             <md-field>
                                 <label>Post code</label>
-                                <md-input></md-input>
+                                <md-input v-model="post_code"></md-input>
                             </md-field>
                         </div>
                         <div class="md-layout-item md-small-size-60">
                             <md-field>
                                 <label>City</label>
-                                <md-input></md-input>
+                                <md-input v-model="city"></md-input>
                             </md-field>
                         </div>
                     </div>
                     <md-field>
                         <label>Street, House number</label>
-                        <md-input></md-input>
+                        <md-input v-model="street"></md-input>
                     </md-field>
                 </md-dialog-content>
 
                 <md-dialog-actions>
                     <md-button class="md-default" @click="showDialog = false">Close</md-button>
-                    <md-button class="md-primary" @click="showDialog = false">Save</md-button>
+                    <md-button class="md-primary" @click="saveOption()">Save</md-button>
                 </md-dialog-actions>
             </md-dialog>
             <md-dialog :md-active.sync="showDialogOffer">
