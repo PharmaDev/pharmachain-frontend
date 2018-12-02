@@ -3,16 +3,10 @@ module.exports = {
     replace: true,
     props: ['data', 'select'],
     data: function () {
-        return {
-
-        }
+        return {}
     },
     created: function () {
 
     },
-    methods: {
-        onClickCard() {
-            this.select(this.data);
-        }
-    }
+    methods: {}
 };

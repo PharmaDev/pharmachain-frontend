@@ -1,48 +1,51 @@
-<div class="page-container"  style="height: 100%">
+<div class="page-container" style="height: 100%">
     <md-app md-waterfall md-mode="fixed">
         <md-app-toolbar class="md-primary">
             <span class="md-title">PharmaChain</span><span class="md-body-1" style="margin-top: 2px; margin-left: 7px">┃ Doctor</span>
         </md-app-toolbar>
 
         <md-app-content>
-            <div >
-                <div style="margin: 150px" v-if="!patient">
+            <div>
+                <div style="margin: 150px" v-if="!patient.is_signed_in">
                     <md-card md-with-hover md-medium>
                         <md-ripple>
                             <md-card-header>
-                                <div class="md-title">Insurance ID of the patient</div>
+                                <div class="md-title">ID of the patient</div>
                             </md-card-header>
 
                             <md-card-content>
                                 <md-field>
-                                    <label>Insurance ID</label>
-                                    <md-input></md-input>
+                                    <label>Patient ID</label>
+                                    <md-input v-model="patient.id"></md-input>
                                 </md-field>
                             </md-card-content>
 
                             <md-card-actions>
-                                <md-button v-on:click="patient=true">OK</md-button>
+                                <md-button v-on:click="set_patient()">OK</md-button>
                             </md-card-actions>
                         </md-ripple>
                     </md-card>
-
                 </div>
 
-                <div v-if="patient">
+                <div v-if="patient.is_signed_in">
                     <div class="md-layout">
                         <div class="md-layout-item md-size-30" style="max-width: 200px">
                             <md-card>
                                 <md-card-media style="text-align: center; padding-top: 40px">
-                                    <img style=" width: 150px; border-radius: 150px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsAUelg7yg0mepGMf-N93hh6E9XrLnKwsKa4YEQ6swhDknk4F9eQ" alt="People">
+                                    <img style=" width: 150px; border-radius: 150px;"
+                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsAUelg7yg0mepGMf-N93hh6E9XrLnKwsKa4YEQ6swhDknk4F9eQ"
+                                         alt="People">
                                 </md-card-media>
 
                                 <md-card-header>
-                                    <div class="md-title">Eric S</div>
+                                    <div class="md-title">{{patient.firstName}} {{patient.lastName}}</div>
                                     <div class="md-subhead">Birthday: 12.07.1995</div>
                                 </md-card-header>
 
                                 <md-card-content>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum
+                                    odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate
+                                    pariatur in deleniti minus sint. Excepturi.
                                 </md-card-content>
                             </md-card>
                         </div>
@@ -62,16 +65,16 @@
                 <md-dialog-content>
 
                     <md-field>
-                        <label >Medicine Name</label>
-                        <md-input v-model="med_name"></md-input>
+                        <label>Medicine Name</label>
+                        <md-input v-model="new_prescription.name"></md-input>
                     </md-field>
                     <md-field>
                         <label>Medicine Dosage</label>
-                        <md-input v-model="med_dosage"></md-input>
+                        <md-input v-model="new_prescription.dosage"></md-input>
                     </md-field>
                     <md-field>
                         <label>Quantity</label>
-                        <md-input v-model="med_qan"></md-input>
+                        <md-input v-model="new_prescription.qan"></md-input>
                     </md-field>
                 </md-dialog-content>
 
@@ -79,10 +82,19 @@
                     <md-button class="md-primary" @click="showDialog = false">Close</md-button>
                     <md-button class="md-primary" @click="new_receipt()">Save</md-button>
                 </md-dialog-actions>
+
             </md-dialog>
         </md-app-content>
     </md-app>
-    <md-button v-if="patient" class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;" v-on:click="showDialog = true">
-        <md-icon>add</md-icon>
-    </md-button>
+    <template v-if="patient.is_signed_in">
+        <md-button v-if="patient" class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;"
+                   v-on:click="showDialog = true">
+            <md-icon>add</md-icon>
+        </md-button>
+        <md-button v-if="patient" class="md-fab md-raised" style="position: absolute; bottom: 15px; right: 85px;"
+                   v-on:click="clear_patient()">
+            <md-icon>clear</md-icon>
+        </md-button>
+    </template>
+
 </div>
