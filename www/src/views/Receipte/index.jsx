@@ -4,7 +4,7 @@ module.exports = {
     props: ['data', 'select'],
     data: function () {
         return {
-            data: data,
+
         }
     },
     created: function () {

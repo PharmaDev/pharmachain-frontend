@@ -72,7 +72,7 @@ module.exports = {
                 type: 'POST',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.99.101:3000/api/de.pharmachain.Offer',
+                url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer',
                 data: JSON.stringify({
 
                     $class: "de.pharmachain.Offer",

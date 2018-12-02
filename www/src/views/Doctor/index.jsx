@@ -26,7 +26,7 @@ module.exports = {
             type: 'GET',
             contentType: "application/json",
             Accept: "application/json",
-            url: 'http://192.168.99.101:3000/api/de.pharmachain.Receipt',
+            url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
             success: function (data) {
                 console.log(data);
                 data.forEach(function (d) {
@@ -54,7 +54,7 @@ module.exports = {
                 type: 'POST',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.99.101:3000/api/de.pharmachain.Receipt',
+                url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
                 data: JSON.stringify({
 
                     $class: "de.pharmachain.Receipt",

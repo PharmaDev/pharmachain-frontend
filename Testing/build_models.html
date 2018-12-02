@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Build models</title>
+
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+
+    <script>
+        let pharma_web_ip = '192.168.41.131';
+    </script>
+
+
+    <!--Participants-->
+    <script>
+
+
+        // i_0001
+        $.ajax({
+            type: 'POST',
+            contentType: "application/json",
+            Accept: "application/json",
+            url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Insurance',
+            data: JSON.stringify({
+                "$class": "de.pharmachain.Insurance",
+                "money": "0.0",
+                "id": "i_0001",
+                "name": "AOK"
+
+            }),
+            success: function () {
+                // i_0001/doc_0001
+                $.ajax({
+                    type: 'POST',
+                    contentType: "application/json",
+                    Accept: "application/json",
+                    url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Doctor',
+                    data: JSON.stringify({
+                        "$class": "de.pharmachain.Doctor",
+                        "id": "doc_0001",
+                        "name": "Doctor Who"
+
+                    }),
+                    success: function () {
+                        console.log('Build doc_0001')
+                        // i_0001/doc_0001/p_0001
+                        $.ajax({
+                            type: 'POST',
+                            contentType: "application/json",
+                            Accept: "application/json",
+                            url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Patient',
+                            data: JSON.stringify({
+                                "$class": "de.pharmachain.Patient",
+                                "id": "p_0001",
+                                "firstName": "Tom",
+                                "lastName": "Riddle",
+                                "money": "0.0",
+                                "insurance": "resource:de.pharmachain.Insurance#i_0001"
+
+                            }),
+                            success: function () {
+                                // i_0001/doc_0001/p_0001/r_0001
+                                $.ajax({
+                                    type: 'POST',
+                                    contentType: "application/json",
+                                    Accept: "application/json",
+                                    url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Receipt',
+                                    data: JSON.stringify({
+                                        $class: "de.pharmachain.Receipt",
+                                        id: "r_0001",
+                                        prescription: 'Paracetamol',
+                                        doctor: "resource:de.pharmachain.Doctor#doc_0001",
+                                        patient: "resource:de.pharmachain.Patient#p_0001"
+
+                                    }),
+                                    success: function () {
+                                        console.log("Build r_0001")
+                                    },
+                                    error: function (response) {
+                                        console.log(response)
+                                    }
+                                });
+                                // i_0001/doc_0001/p_0001/r_0002
+                                $.ajax({
+                                    type: 'POST',
+                                    contentType: "application/json",
+                                    Accept: "application/json",
+                                    url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Receipt',
+                                    data: JSON.stringify({
+                                        $class: "de.pharmachain.Receipt",
+                                        id: "r_0002",
+                                        prescription: 'Virostatikum',
+                                        doctor: "resource:de.pharmachain.Doctor#doc_0001",
+                                        patient: "resource:de.pharmachain.Patient#p_0001"
+
+                                    }),
+                                    success: function () {
+                                        console.log("Build r_0002")
+                                    },
+                                    error: function (response) {
+                                        console.log(response)
+                                    }
+                                });
+                            },
+                            error: function (response) {
+                                console.log(response)
+                            }
+                        });
+                        // i_0001/doc_0001/p_0002
+                        $.ajax({
+                            type: 'POST',
+                            contentType: "application/json",
+                            Accept: "application/json",
+                            url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Patient',
+                            data: JSON.stringify({
+                                "$class": "de.pharmachain.Patient",
+                                "id": "p_0002",
+                                "firstName": "Harry",
+                                "lastName": "Potter",
+                                "money": "0.0",
+                                "insurance": "resource:de.pharmachain.Insurance#i_0001"
+
+                            }),
+                            success: function () {
+                                console.log('Build p_0002')
+                            },
+                            error: function (response) {
+                                console.log(response)
+                            }
+                        });
+                    },
+                    error: function (response) {
+                        console.log(response)
+                    }
+                });
+                // i_0001/doc_0002
+                $.ajax({
+                    type: 'POST',
+                    contentType: "application/json",
+                    Accept: "application/json",
+                    url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Doctor',
+                    data: JSON.stringify({
+                        "$class": "de.pharmachain.Doctor",
+                        "id": "doc_0002",
+                        "name": "Doctor Freud"
+
+                    }),
+                    success: function () {
+                        console.log('Build doc_0002')
+                    },
+                    error: function (response) {
+                        console.log(response)
+                    }
+                });
+
+            },
+            error: function (response) {
+                console.log(response)
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            contentType: "application/json",
+            Accept: "application/json",
+            url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Insurance',
+            data: JSON.stringify({
+                "$class": "de.pharmachain.Insurance",
+                "money": "0.0",
+                "id": "i_0002",
+                "name": "TK"
+
+            }),
+            success: function () {
+                console.log('Build i_0002');
+                // Patient
+
+            },
+            error: function (response) {
+                console.log(response)
+            }
+        });
+
+        // Pharmacy
+        $.ajax({
+            type: 'POST',
+            contentType: "application/json",
+            Accept: "application/json",
+            url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Pharmacy',
+            data: JSON.stringify({
+                "$class": "de.pharmachain.Pharmacy",
+                "money": "0.0",
+                "id": "pha_0001",
+                "name": "Hainbuchen-Apotheke"
+            }),
+            success: function () {
+                console.log('Build pha_0001')
+            },
+            error: function (response) {
+                console.log(response)
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            contentType: "application/json",
+            Accept: "application/json",
+            url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Pharmacy',
+            data: JSON.stringify({
+                "$class": "de.pharmachain.Pharmacy",
+                "money": "0.0",
+                "id": "pha_0002",
+                "name": "Blumen-Apotheke"
+            }),
+            success: function () {
+                console.log('Build pha_0002')
+            },
+            error: function (response) {
+                console.log(response)
+            }
+        });
+
+    </script>
+
+
+    <!--Receipts-->
+    <script>
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
