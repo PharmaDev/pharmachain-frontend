@@ -24,22 +24,22 @@ module.exports = {
                 {
                     name: "Paracetamol",
                     dosages: ["250 mg", "500 mg"],
-                    quantities: ["25", "50", "100"]
+                    quantities: ["25x", "50x", "100x"]
                 },
                 {
                     name: "Ibuprofen",
                     dosages: ["200 mg", "400 mg", "600 mg", "800 mg"],
-                    quantities: ["50", "100", "200"]
+                    quantities: ["50x", "100x", "200x"]
                 },
                 {
                     name: "Ampicillin ",
                     dosages: ["1000 mg", "2000 mg"],
-                    quantities: ["10", "15"]
+                    quantities: ["10x", "15x"]
                 },
                 {
                     name: "Clindamycin ",
                     dosages: ["150 mg", "300 mg", "600 mg"],
-                    quantities: ["5", "10"]
+                    quantities: ["5x", "10x"]
                 }
             ]
         }

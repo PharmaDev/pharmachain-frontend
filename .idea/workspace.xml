@@ -2,13 +2,12 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/node_modules/jquery/dist/jquery.js" description="* jQuery JavaScript Library v3.3.1" line="1" />
+    <bookmark url="file://$PROJECT_DIR$/www/src/views/Pharmacy/template.html" description="                            &lt;md-card-content style..." line="54" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e29d9e11-4947-457b-83ac-2576b5284b5f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing/build_models.html" beforeDir="false" afterPath="$PROJECT_DIR$/Testing/build_models.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/src/views/Doctor/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Doctor/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/src/views/Doctor/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Doctor/template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/src/views/Patient/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Patient/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/src/views/Patient/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Patient/template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx" afterDir="false" />
@@ -34,32 +33,17 @@
       <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/views/Patient/template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="27" selection-end-column="22" />
+            <state relative-caret-position="1156">
+              <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
               <folding>
-                <element signature="n#style#0;n#md-button#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-card#0;n#template#0;n#template#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-card-content#0;n#div#0;n#md-card#0;n#template#0;n#template#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#template#0;n#template#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-card#0;n#template#0;n#template#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#template#0;n#template#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-card-content#0;n#div#0;n#md-card#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-button#0;n#div#0;n#md-card#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/src/views/Patient/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1445">
-              <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
-              <folding>
-                <element signature="e#944#1735#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1081">
-              <caret line="117" column="25" selection-start-line="117" selection-start-column="25" selection-end-line="117" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -67,8 +51,8 @@
       <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-85">
-              <caret line="65" column="48" lean-forward="true" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
+            <state relative-caret-position="245">
+              <caret line="77" column="49" selection-start-line="77" selection-start-column="49" selection-end-line="77" selection-end-column="49" />
               <folding>
                 <element signature="n#style#0;n#md-button#0;n#template#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#md-button#1;n#template#0;n#div#0;n#!!top" expanded="true" />
@@ -77,23 +61,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/template.html">
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/src/views/Patient/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="58" lean-forward="true" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+            <state relative-caret-position="357">
+              <caret line="165" column="35" selection-start-line="165" selection-start-column="35" selection-end-line="165" selection-end-column="35" />
               <folding>
-                <element signature="n#style#0;n#span#1;n#md-app-toolbar#1;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#1081#2294#0" />
+                <element signature="e#2331#2611#0" />
+                <element signature="e#3469#4477#0" />
+                <element signature="e#5402#5524#0" />
+                <element signature="e#5547#6415#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/template.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="63" column="94" selection-start-line="63" selection-start-column="88" selection-end-line="63" selection-end-column="94" />
+              <folding>
+                <element signature="n#style#0;n#span#1;n#md-app-toolbar#1;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-field#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-card#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-card-content#0;n#div#0;n#md-card#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-button#0;n#md-card-content#0;n#div#0;n#md-card#0;n#div#1;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1526">
-              <caret line="77" column="28" lean-forward="true" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
+            <state relative-caret-position="510">
+              <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -110,36 +116,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Name Vorname</find>
-      <find>4444</find>
-      <find>192.168.99.101</find>
-      <find>192.168.41.131</find>
-      <find>/pharma_web_ip:</find>
-      <find>click</find>
-      <find>&quot;click&quot;</find>
-      <find>Build Patient</find>
-      <find>Receipt ID</find>
-      <find>Insurance ID of</find>
-      <find>md-button-content</find>
-      <find>md-icon</find>
-      <find>Insurance ID</find>
-      <find>er</find>
-      <find>substring</find>
-      <find>Doctor</find>
-      <find>save</find>
-      <find>patient_id</find>
-      <find>new_receipt</find>
-      <find>new_re</find>
-      <find>med</find>
-      <find>for</find>
-      <find>eric</find>
-      <find>name</find>
-      <find>Pharmac</find>
-      <find>medicine</find>
-      <find>qua</find>
-      <find>log</find>
-      <find>birt</find>
+      <find>de</find>
+      <find>New Offer</find>
+      <find>Haupt</find>
+      <find>manu</find>
+      <find>delete</find>
+      <find>haup</find>
+      <find>data</find>
+      <find>my re</find>
+      <find>rel</find>
+      <find>acceptOrder</find>
+      <find>receipt</find>
+      <find>get_patient_receipts</find>
+      <find>My</find>
+      <find>get_p</find>
+      <find>rece</find>
+      <find>get_</find>
+      <find>offers</find>
+      <find>acce</find>
+      <find>accept</find>
+      <find>acc</find>
+      <find>in de</find>
+      <find>In Deli</find>
+      <find>status</find>
+      <find>my</find>
+      <find>post</find>
+      <find>post_OfferAccepted</find>
       <find>patient</find>
+      <find>m</find>
+      <find>success</find>
+      <find>Offers</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -150,6 +156,7 @@
       <replace>&quot;console.log('click')&quot;</replace>
       <replace>Pharmacy</replace>
       <replace>id</replace>
+      <replace>tab-receipts</replace>
       <replace>pharmacy</replace>
     </replaceStrings>
   </component>
@@ -179,13 +186,13 @@
         <option value="$PROJECT_DIR$/Testing/delete_models.html" />
         <option value="$PROJECT_DIR$/www/src/views/Receipte/template.html" />
         <option value="$PROJECT_DIR$/www/src/views/Receipte/index.jsx" />
-        <option value="$PROJECT_DIR$/www/src/views/Patient/index.jsx" />
-        <option value="$PROJECT_DIR$/www/src/views/Patient/template.html" />
-        <option value="$PROJECT_DIR$/www/src/views/Pharmacy/template.html" />
-        <option value="$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx" />
         <option value="$PROJECT_DIR$/Testing/build_models.html" />
-        <option value="$PROJECT_DIR$/www/src/views/Doctor/template.html" />
+        <option value="$PROJECT_DIR$/www/src/views/Pharmacy/template.html" />
         <option value="$PROJECT_DIR$/www/src/views/Doctor/index.jsx" />
+        <option value="$PROJECT_DIR$/www/src/views/Doctor/template.html" />
+        <option value="$PROJECT_DIR$/www/src/views/Patient/template.html" />
+        <option value="$PROJECT_DIR$/www/src/views/Patient/index.jsx" />
+        <option value="$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx" />
       </list>
     </option>
   </component>
@@ -266,6 +273,14 @@
               <item name="www" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Offer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Pharmachain_frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pharmachain_frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="Patient" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -275,6 +290,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="Pharmacy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Pharmachain_frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pharmachain_frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Receipte" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -419,12 +442,12 @@
       <workItem from="1542702201673" duration="9370000" />
       <workItem from="1542715194478" duration="2361000" />
       <workItem from="1542980223591" duration="11000" />
-      <workItem from="1543764192541" duration="27470000" />
+      <workItem from="1543764192541" duration="43189000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65365000" />
+    <option name="totallyTimeSpent" value="81084000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1911" y="-481" width="1826" height="1098" extended-state="6" />
@@ -436,14 +459,14 @@
       <window_info anchor="bottom" id="Run" order="7" weight="0.456427" />
       <window_info anchor="bottom" id="Version Control" order="4" weight="0.32884097" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="3" visible="true" weight="0.18907563" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.42436975" />
       <window_info id="Gulp" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.63212436" visible="true" weight="0.14613661" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.62875" visible="true" weight="0.14613661" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32897604" />
+      <window_info anchor="bottom" id="Find" order="6" visible="true" weight="0.15966387" />
       <window_info id="Structure" order="4" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info id="Favorites" order="1" sideWeight="0.36787564" side_tool="true" visible="true" weight="0.14613661" />
+      <window_info id="Favorites" order="1" sideWeight="0.37125" side_tool="true" visible="true" weight="0.14613661" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -460,7 +483,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -605,22 +628,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Offer/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/foto.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Offer/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="9" lean-forward="true" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/src/main.jsx">
       <provider selected="true" editor-type-id="text-editor">
@@ -688,55 +697,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Receipte/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#md-card#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Receipte/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Patient/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="27" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#md-button#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="58" lean-forward="true" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
-          <folding>
-            <element signature="n#style#0;n#span#1;n#md-app-toolbar#1;n#md-app#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Testing/build_models.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1089">
           <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Testing/delete_models.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -747,10 +711,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Testing/delete_models.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="26" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Offer/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Receipte/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Offer/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Receipte/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="9" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#md-card#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="65" column="48" lean-forward="true" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
+        <state relative-caret-position="245">
+          <caret line="77" column="49" selection-start-line="77" selection-start-column="49" selection-end-line="77" selection-end-column="49" />
           <folding>
             <element signature="n#style#0;n#md-button#0;n#template#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#md-button#1;n#template#0;n#div#0;n#!!top" expanded="true" />
@@ -758,27 +768,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx">
+    <entry file="file://$PROJECT_DIR$/www/src/views/Patient/template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1526">
-          <caret line="77" column="28" lean-forward="true" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
+        <state relative-caret-position="1156">
+          <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#md-card#0;n#template#0;n#template#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-card-content#0;n#div#0;n#md-card#0;n#template#0;n#template#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#template#0;n#template#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-card#0;n#template#0;n#template#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#template#0;n#template#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-card-content#0;n#div#0;n#md-card#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-button#0;n#div#0;n#md-card#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/src/views/Patient/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1445">
-          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+        <state relative-caret-position="357">
+          <caret line="165" column="35" selection-start-line="165" selection-start-column="35" selection-end-line="165" selection-end-column="35" />
           <folding>
-            <element signature="e#944#1735#0" />
+            <element signature="e#1081#2294#0" />
+            <element signature="e#2331#2611#0" />
+            <element signature="e#3469#4477#0" />
+            <element signature="e#5402#5524#0" />
+            <element signature="e#5547#6415#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/views/Doctor/index.jsx">
+    <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1081">
-          <caret line="117" column="25" selection-start-line="117" selection-start-column="25" selection-end-line="117" selection-end-column="25" />
+        <state relative-caret-position="241">
+          <caret line="63" column="94" selection-start-line="63" selection-start-column="88" selection-end-line="63" selection-end-column="94" />
+          <folding>
+            <element signature="n#style#0;n#span#1;n#md-app-toolbar#1;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-field#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-card#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-card-content#0;n#div#0;n#md-card#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-badge#0;n#md-card-content#0;n#div#0;n#md-card#0;n#div#0;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-button#0;n#md-card-content#0;n#div#0;n#md-card#0;n#div#1;n#template#0;n#md-app-content#0;n#md-app#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/views/Pharmacy/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
         </state>
       </provider>
     </entry>

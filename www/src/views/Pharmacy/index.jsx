@@ -1,3 +1,4 @@
+var md5 = require('js-md5');
 var numeral = require("numeral");
 module.exports = {
     template: require('./template.html'),
@@ -11,22 +12,42 @@ module.exports = {
                 money: null
 
             },
-            orders: [
-                {name: "Paracetamol 500mg 50x", date: "12.04.2018", dist: "1.3km"},
-                {name: "Protozoan 50mg 10x", date: "21.09.2018", dist: "500m"}
+            open_receipts: [
+                // {id: "xxx"
+                // description: "Paracetamol 500mg 50x",
+                // date: "12.04.2018",
+                // dist: "1.3km"},
             ],
-            deliveries: [
-                {name: "Paracetamol 500mg 50x", details: "details", address: "address", delivery: "delivery info"},
-                {name: "Protozoen 50mg 10x", details: "details", address: "address", delivery: "delivery info"}
+
+            new_offer: {
+                selectedReceipt: null,
+                manufacturer: null,
+                delivery: null,
+                insuranceCost: null,
+                patientCost: null
+
+            },
+            offer_manufacturers: [
+                "Bayer",
+                "Lilly",
+                "Pfizer"
             ],
+            offers: [
+                // {id: "xxx",
+                // description: "Paracetamol 500mg 50x",
+                // details: "details",
+                // address: "address",
+                // delivery: "delivery info"},
+            ],
+            offer_receipts_ids: [],
             billings: [
-                {name: "Paracetamol 500mg 50x", details: "Bayer", address: "address", price: "20 Euro"},
+                {description: "Paracetamol 500mg 150x", details: "Bayer", address: "address", price: "20 Euro"},
             ],
             status: "active",
             showDialog: false,
-            selectedReceipt: null,
+            // selectedReceipt: null,
             newPosts: 0,
-            currentTab: "tab-orders",
+            currentTab: "tab-receipts",
             showDialogOrder: false,
             selectedOrder: null,
             selectedYears: [2018, 2017],
@@ -68,11 +89,76 @@ module.exports = {
     },
     created: function () {
         this.checkNewPosts()
-
         this.clear_pharmacy();
+
+
     },
     methods: {
-        set_pharmacy(){
+        get_offers: function () {
+            console.log('get_Offer()');
+
+            let self = this;
+            $.ajax({
+                type: 'GET',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer',
+                success: function (data) {
+                    self.offers = [];
+                    self.offer_receipts_ids = [];
+                    data.forEach(function (offer) {
+                        if (offer.pharmacy.indexOf(self.pharmacy.id) !== -1) {
+                            self.offer_receipts_ids.push(offer.receipt.split('#')[1]);
+                            self.offers.push({
+                                id: offer.id,
+                                description: offer.description,
+                                insuranceCost: 10,
+                                patientCost: 10,
+                                details: "details",
+                                address: "address",
+                                delivery: "delivery info"
+                            });
+                        }
+
+                    });
+                    self.get_open_receipts();
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        },
+        get_open_receipts: function () {
+            console.log('get_open_receipts()');
+
+            let self = this;
+
+            $.ajax({
+                type: 'GET',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
+                success: function (data) {
+                    self.open_receipts = [];
+                    data.forEach(function (receipt) {
+                        if (receipt.state === 'open') {
+                            if (!self.offer_receipts_ids.includes(receipt.id)) {
+                                self.open_receipts.push({
+                                    id: receipt.id,
+                                    description: receipt.prescription,
+                                    date: "20.11.2018",
+                                    dist: "1 km"
+                                });
+                            }
+                        }
+                    })
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        },
+        set_pharmacy() {
             let self = this;
             $.ajax({
                 type: 'GET',
@@ -85,7 +171,7 @@ module.exports = {
                             self.pharmacy.name = pharmacy.name;
                             self.pharmacy.money = pharmacy.money;
                             self.pharmacy.is_signed_in = true;
-                            // self.get_pharmacy_receipts();
+                            self.get_offers();
                         }
                     });
 
@@ -110,50 +196,62 @@ module.exports = {
             };
             this.receipts = [];
         },
-        offer() {
-
+        post_offer() {
             this.showDialogOrder = false;
 
             let self = this;
+            console.log('post_offer()')
             $.ajax({
                 type: 'POST',
                 contentType: "application/json",
                 Accept: "application/json",
                 url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer',
                 data: JSON.stringify({
-
                     $class: "de.pharmachain.Offer",
-                    id: "0009",
-                    description: "Paracetamol 500mg 50x",
-                    delivery: "40 min",
-                    insuranceCost: 10,
-                    patientCost: 10,
-                    pharmacy: "resource:de.pharmachain.Pharmacy#3333",
-                    receipt: "resource:de.pharmachain.Receipt#0001"
+                    id: md5(Date.now().toString()),
+                    description: self.new_offer.selectedOrder.description + ' von ' + self.new_offer.manufacturer + '; ' + self.pharmacy.name,
+                    delivery: self.new_offer.delivery,
+                    insuranceCost: parseInt(self.new_offer.patientCost),
+                    patientCost: parseInt(self.new_offer.patientCost),
+                    pharmacy: "resource:de.pharmachain.Pharmacy#" + self.pharmacy.id,
+                    receipt: "resource:de.pharmachain.Receipt#" + self.new_offer.selectedOrder.id
 
                 }),
                 success: function (data) {
-                    self.receipts.push({
-                        name: self.med_name + ' ' + self.med_dosage + ' ' + self.med_qan,
-                        date: "20.11.2018"
-                    })
+                    self.get_offers();
                 },
                 error: function (response) {
                     console.log(response)
                 }
             });
         },
+        delete_offer: function (value) {
+            console.log("delete_offer()");
+
+            let self = this;
+            $.ajax({
+                type: 'DELETE',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer/' + value.id,
+                success: function () {
+                    self.get_offers()
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+
+        },
         selectOption(value) {
             this.showDialog = true;
             this.selectedReceipt = value;
         },
         selectOrder(value) {
+            console.log(value);
+
             this.showDialogOrder = true;
-            this.selectedOrder = value;
-        },
-        reload() {
-            this.showDialog = false;
-            this.selectedReceipt = null;
+            this.new_offer.selectedOrder = value;
         },
         changeTab(newTab) {
             this.clearNewPosts();

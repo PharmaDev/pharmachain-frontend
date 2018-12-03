@@ -60,23 +60,67 @@
                                 </md-tabs>
                             </md-card>
                             <div v-if="currentTab == 'tab-receipts'">
+
                                 <p class="md-display-2" style="margin: 15px; display: inline-block">My Receipts</p>
                                 <md-field style="float: right; margin-right: 15px; width: 150px">
                                     <md-select v-model="status" name="status" id="country" placeholder="Status">
                                         <md-option value="active">Active</md-option>
-                                        <md-option value="in_delivery">In Delivery</md-option>
                                         <md-option value="archive">Archive</md-option>
                                     </md-select>
                                 </md-field>
-                                <template v-for="receipt in receipts">
-                                    <receipt v-bind:data="receipt" v-bind:select="selectOption"></receipt>
+
+                                <template v-if="status=='active'">
+                                    <template v-for="receipt in receipts">
+                                        <md-card style="margin-bottom: 15px;">
+                                            <div>
+                                                <md-card-content style="padding-bottom: 5px">
+                                                    <p class="md-title">{{receipt.name}}</p>
+                                                    <p class="md-body-1">Date: {{receipt.date}}</p>
+                                                    <md-badge v-if="true" class="md-square" md-content="Active"
+                                                              style="background: green; top: 15px; right: 15px"></md-badge>
+                                                </md-card-content>
+                                            </div>
+                                        </md-card>
+                                    </template>
                                 </template>
+
+                                <template v-if="status=='archive'">
+                                    <template v-for="receipt in receipts_archive">
+                                        <md-card style="margin-bottom: 15px;">
+                                            <div>
+                                                <md-card-content style="padding-bottom: 5px">
+                                                    <p class="md-title">{{receipt.name}}</p>
+                                                    <p class="md-body-1">Date: {{receipt.date}}</p>
+                                                    <md-badge v-if="true" class="md-square" md-content="Active"
+                                                              style="background: red; top: 15px; right: 15px"></md-badge>
+                                                </md-card-content>
+                                            </div>
+                                        </md-card>
+                                    </template>
+                                </template>
+
                             </div>
                             <div v-if="currentTab == 'tab-offers'">
                                 <p class="md-display-2" style="margin: 15px; display: inline-block">Offers</p>
-                                <template v-for="offer in offers">
-                                    <offer v-bind:data="offer" v-bind:select="selectOffer"></offer>
-                                </template>
+                                <!--<template v-for="offer in offers">-->
+                                <!--<offer v-bind:data="offer" v-bind:select="selectOffer"></offer>-->
+                                <!--</template>-->
+                                <md-card style="margin-bottom: 15px;" v-for="offer in offers">
+                                    <div>
+                                        <md-card-content style="padding-bottom: 5px">
+                                            <p class="md-title">{{offer.name}}</p>
+                                            <p class="md-body-1">Delivery: {{offer.date}}</p>
+                                            <p class="md-body-1">Pharmacy: Apotheke</p>
+                                            <p class="md-body-1">Price: 10 Euro</p>
+                                            <md-badge v-if="true" class="md-square" :md-content="offer.dist"
+                                                      style="background: green; top: 15px; right: 15px"></md-badge>
+                                        </md-card-content>
+                                        <md-button v-on:click="post_OfferAccepted(offer)"
+                                                   style="background-color: green">
+                                            Accept
+                                        </md-button>
+                                    </div>
+                                </md-card>
                             </div>
 
                         </div>

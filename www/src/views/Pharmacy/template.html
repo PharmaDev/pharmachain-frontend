@@ -4,7 +4,8 @@
             <span class="md-title">PharmaChain </span><span class="md-body-1" style="margin-top: 2px; margin-left: 7px">┃ Pharmacy</span>
         </md-app-toolbar>
         <md-app-toolbar class="md-primary" v-if="pharmacy.is_signed_in">
-            <span class="md-title">{{pharmacy.name}}</span><span class="md-body-1" style="margin-top: 2px; margin-left: 7px">┃ Balance: {{pharmacy.money}}</span>
+            <span class="md-title">{{pharmacy.name}}</span><span class="md-body-1"
+                                                                 style="margin-top: 2px; margin-left: 7px">┃ Balance: {{pharmacy.money}}</span>
         </md-app-toolbar>
 
         <md-app-content>
@@ -28,20 +29,20 @@
                     </md-ripple>
                 </md-card>
             </div>
-            <template  v-if="pharmacy.is_signed_in">
+            <template v-if="pharmacy.is_signed_in">
                 <md-card>
                     <md-tabs @md-changed="changeTab">
                         <template slot="md-tab" slot-scope="{ tab }">
                             {{ tab.label }} <i class="badge" v-if="tab.data.badge">{{ tab.data.badge }}</i>
                         </template>
-                        <md-tab id="tab-orders" md-label="Orders"></md-tab>
-                        <md-tab id="tab-deliveries" md-label="Deliveries"></md-tab>
+                        <md-tab id="tab-receipts" md-label="Open receipts"></md-tab>
+                        <md-tab id="tab-deliveries" md-label="Offers"></md-tab>
                         <md-tab id="tab-billing" md-label="Billing"></md-tab>
                         <md-tab id="tab-statistics" md-label="Statistics"></md-tab>
                     </md-tabs>
                 </md-card>
-                <div v-if="currentTab == 'tab-orders'">
-                    <p class="md-display-2" style="margin: 15px; display: inline-block">Orders</p>
+                <div v-if="currentTab == 'tab-receipts'">
+                    <p class="md-display-2" style="margin: 15px; display: inline-block">Open receipts</p>
                     <md-field style="float: right; margin-right: 15px; width: 150px">
                         <md-select v-model="status" name="status" id="country" placeholder="Status">
                             <md-option value="active">Active</md-option>
@@ -49,32 +50,33 @@
                             <md-option value="archive">Archive</md-option>
                         </md-select>
                     </md-field>
-                    <md-card style="margin-bottom: 15px;" v-for="order in orders" :key="order.name">
-                        <div @click="selectOrder()">
+                    <md-card style="margin-bottom: 15px;" v-for="receipt in open_receipts" :key="receipt.id">
+                        <div @click="selectOrder(receipt)">
                             <md-card-content style="padding-bottom: 15px">
-                                <p class="md-title">{{order.name}}</p>
-                                <md-badge class="md-square" :md-content="order.dist"
+                                <p class="md-title">{{receipt.description}}</p>
+                                <md-badge class="md-square" :md-content="receipt.dist"
                                           style="background: green; top: 15px; right: 15px"></md-badge>
                             </md-card-content>
                         </div>
                     </md-card>
                 </div>
                 <div v-if="currentTab == 'tab-deliveries'">
-                    <p class="md-display-2" style="margin: 15px; display: inline-block">Deliveries</p>
-                    <md-card style="margin-bottom: 15px;" v-for="delivery in deliveries" :key="delivery.name">
+                    <p class="md-display-2" style="margin: 15px; display: inline-block">Offers</p>
+                    <md-card style="margin-bottom: 15px;" v-for="offer in offers" :key="offer.id">
                         <div>
                             <md-card-content style="padding-bottom: 15px">
-                                <p class="md-title">{{delivery.name}}</p>
+                                <p class="md-title">{{offer.description}}</p>
                                 <p>
                                     <span class="md-body-2">Producer/Version: </span>
-                                    <span class="md-body-1">{{delivery.details}}</span>
+                                    <span class="md-body-1">{{offer.details}}</span>
                                 </p>
                                 <p>
                                     <span class="md-body-2">Address: </span>
-                                    <span class="md-body-1">{{delivery.address}}</span>
+                                    <span class="md-body-1">{{offer.address}}</span>
                                 </p>
-                                <md-badge class="md-square" :md-content="delivery.delivery"
+                                <md-badge class="md-square" :md-content="offer.delivery"
                                           style="background: green; top: 15px; right: 15px"></md-badge>
+                                <md-button v-on:click="delete_offer(offer)" style="background: red">Delete</md-button>
                             </md-card-content>
                         </div>
                     </md-card>
@@ -102,21 +104,6 @@
                 <div v-if="currentTab == 'tab-statistics'">
                     <p class="md-display-2" style="margin: 15px; display: inline-block">Statistics</p>
                     <div>
-                        <!--<div class="field is-grouped">
-                            <div class="control">
-                                <label class="checkbox">
-                                    <input type="checkbox" :value="2018" v-model="selectedYears">
-                                    Paracetamol
-                                </label>
-                            </div>
-                            <div class="control">
-                                <label class="checkbox">
-                                    <input type="checkbox" :value="2017" v-model="selectedYears">
-                                    Protozoan
-                                </label>
-                            </div>
-                        </div>-->
-
                         <linechart
                                 :width="500"
                                 :height="300"
@@ -131,24 +118,37 @@
 
                     <md-dialog-content>
                         <md-field>
-                            <label>Producer/Version of Medicine</label>
-                            <md-input></md-input>
+                            <label>Medication</label>
+                            <md-select v-model="new_offer.manufacturer">
+                                <md-option v-for="manufacturer in offer_manufacturers" :value="manufacturer">
+                                    {{ manufacturer }}
+                                </md-option>
+                            </md-select>
                         </md-field>
                         <md-field>
                             <label>Delivery</label>
-                            <md-input></md-input>
+                            <md-input v-model="new_offer.delivery"></md-input>
+                        </md-field>
+                        <md-field>
+                            <label>insuranceCost</label>
+                            <md-input v-model="new_offer.insuranceCost"></md-input>
+                        </md-field>
+                        <md-field>
+                            <label>patientCost</label>
+                            <md-input v-model="new_offer.patientCost"></md-input>
                         </md-field>
                     </md-dialog-content>
 
                     <md-dialog-actions>
                         <md-button class="md-default" @click="showDialogOrder = false">Cancel</md-button>
-                        <md-button class="md-primary" @click="offer()">Confirm</md-button>
+                        <md-button class="md-primary" @click="post_offer()">Confirm</md-button>
                     </md-dialog-actions>
                 </md-dialog>
             </template>
         </md-app-content>
     </md-app>
-    <md-button class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;" v-on:click="reload()">
+    <md-button class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;"
+               v-on:click="get_offers()">
         <md-icon>cached</md-icon>
     </md-button>
 </div>

@@ -12,13 +12,19 @@ module.exports = {
                 insurance: null
             },
             receipts: [
-                // {name: "Paracetamol 500mg 50x", date: "12.04.2018"},
-                // {name: "Protozoen 50mg 10x", date: "21.09.2018"}
+                {id: "xxx", name: "Paracetamol 500mg 50x", date: "12.04.2018"},
+
             ],
+
+            open_receipt_ids: [],
+            receipts_archive: [],
+            archive_receipt_ids: [],
             offers: [
-                {name: "Paracetamol 500mg 50x", date: "40 min", dist: "1.3km"},
-                // {name: "Protozoen 50mg 10x", date: "21.09.2018", dist: "500m"}
+                // {id: "xxx", name: "Paracetamol 500mg 50x", date: "40 min", dist: "1.3km"},
             ],
+            // offer_choosing:{
+            //
+            // },
             status: "active",
             showDialog: false,
             selectedReceipt: null,
@@ -39,7 +45,7 @@ module.exports = {
 
     },
     methods: {
-        set_patient(){
+        set_patient() {
             let self = this;
             $.ajax({
                 type: 'GET',
@@ -80,10 +86,83 @@ module.exports = {
             };
             this.receipts = [];
         },
-        acceptOrder(){
-            let self = this;
-            this.showDialogOffer = false
 
+        get_patient_receipts: function () {
+            console.log("get_patient_receipts()");
+
+            let self = this;
+            $.ajax({
+                type: 'GET',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
+                success: function (data) {
+                    self.receipts = [];
+                    self.receipts_archive = [];
+                    console.log("receipt", data)
+                    data.forEach(function (receipt) {
+                        if (receipt.patient.indexOf(self.patient.id) !== -1) {
+                            if (receipt.state === "open") {
+                                self.open_receipt_ids.push(receipt.id)
+                                self.receipts.push({
+                                    id: receipt.id,
+                                    name: receipt.prescription,
+                                    date: "20.11.2018"
+                                });
+                            } else {
+                                self.archive_receipt_ids.push(receipt.id)
+                                self.receipts_archive.push({
+                                    id: receipt.id,
+                                    name: receipt.prescription,
+                                    date: "20.11.2018"
+                                });
+
+                            }
+                        }
+                    });
+                    self.get_patient_offers();
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        },
+        get_patient_offers: function () {
+            console.log("get_patient_offers()");
+
+            let self = this;
+            $.ajax({
+                type: 'GET',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer',
+                success: function (data) {
+                    self.offers = [];
+                    data.forEach(function (offer) {
+                        if (!self.archive_receipt_ids.includes(offer.receipt.split('#')[1])) {
+                            self.offers.push({
+                                id: offer.id,
+                                name: offer.description,
+                                date: "20.11.2018",
+                                dist: offer.delivery,
+                                insuranceCost: 3,
+                                patientCost: 3,
+                                pharmacy: offer.pharmacy,
+                                receipt: offer.receipt
+                            });
+                        }
+
+                    })
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        },
+        post_OfferAccepted(value) {
+            console.log("post_OfferAccepted", value)
+
+            let self = this;
             $.ajax({
                 type: 'POST',
                 contentType: "application/json",
@@ -91,36 +170,12 @@ module.exports = {
                 url: 'http://192.168.41.131:3000/api/de.pharmachain.OfferAccepted',
                 data: JSON.stringify({
                     $class: "de.pharmachain.OfferAccepted",
-                    receipt: "resource:de.pharmachain.Receipt#0001",
-                    acceptedOffer: "resource:de.pharmachain.Offer#0009"
+                    receipt: value.receipt,
+                    acceptedOffer: "resource:de.pharmachain.Offer#" + value.id
                 }),
                 success: function (data) {
-                    console.log(data)
-                },
-                error: function (response) {
-                    console.log(response)
-                }
-            });
-        },
-        get_patient_receipts: function () {
-            this.receipts = [];
-            let self = this;
-
-            $.ajax({
-                type: 'GET',
-                contentType: "application/json",
-                Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
-                success: function (data) {
-                    data.forEach(function (receipt) {
-                        if (receipt.patient.indexOf(self.patient.id) !== -1) {
-                            self.receipts.push({
-                                name: receipt.prescription,
-                                date: "20.11.2018"
-                            });
-                        }
-
-                    })
+                    self.showDialogOffer = false
+                    self.get_patient_receipts();
                 },
                 error: function (response) {
                     console.log(response)
