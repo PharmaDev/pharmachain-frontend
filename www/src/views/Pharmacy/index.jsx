@@ -4,6 +4,13 @@ module.exports = {
     replace: true,
     data: function () {
         return {
+            pharmacy: {
+                is_signed_in: false,
+                id: null,
+                name: null,
+                money: null
+
+            },
             orders: [
                 {name: "Paracetamol 500mg 50x", date: "12.04.2018", dist: "1.3km"},
                 {name: "Protozoan 50mg 10x", date: "21.09.2018", dist: "500m"}
@@ -61,8 +68,48 @@ module.exports = {
     },
     created: function () {
         this.checkNewPosts()
+
+        this.clear_pharmacy();
     },
     methods: {
+        set_pharmacy(){
+            let self = this;
+            $.ajax({
+                type: 'GET',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.41.131:3000/api/de.pharmachain.Pharmacy',
+                success: function (data) {
+                    data.forEach(function (pharmacy) {
+                        if (self.pharmacy.id === pharmacy.id) {
+                            self.pharmacy.name = pharmacy.name;
+                            self.pharmacy.money = pharmacy.money;
+                            self.pharmacy.is_signed_in = true;
+                            // self.get_pharmacy_receipts();
+                        }
+                    });
+
+                    if (self.pharmacy.is_signed_in === false) {
+                        alert('Error: GET /api/de.pharmachain.Pharmacy');
+                        self.clear_pharmacy();
+                    }
+
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        },
+        clear_pharmacy: function () {
+            this.pharmacy = {
+                is_signed_in: false,
+                id: 'pha_0001',
+                name: null,
+                money: null,
+
+            };
+            this.receipts = [];
+        },
         offer() {
 
             this.showDialogOrder = false;

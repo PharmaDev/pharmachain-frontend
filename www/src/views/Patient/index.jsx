@@ -3,6 +3,14 @@ module.exports = {
     replace: true,
     data: function () {
         return {
+            patient: {
+                is_signed_in: false,
+                id: null,
+                firstName: null,
+                lastName: null,
+                money: null,
+                insurance: null
+            },
             receipts: [
                 // {name: "Paracetamol 500mg 50x", date: "12.04.2018"},
                 // {name: "Protozoen 50mg 10x", date: "21.09.2018"}
@@ -24,12 +32,54 @@ module.exports = {
         }
     },
     created: function () {
-        this.checkNewPosts()
+        this.checkNewPosts();
 
-        this.reload_r();
+        this.clear_patient();
+
 
     },
     methods: {
+        set_patient(){
+            let self = this;
+            $.ajax({
+                type: 'GET',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: 'http://192.168.41.131:3000/api/de.pharmachain.Patient',
+                success: function (data) {
+                    data.forEach(function (patient) {
+                        if (self.patient.id === patient.id) {
+                            self.patient.firstName = patient.firstName;
+                            self.patient.lastName = patient.lastName;
+                            self.patient.money = patient.money;
+                            self.patient.insurance = patient.insurance;
+                            self.patient.is_signed_in = true;
+                            self.get_patient_receipts();
+                        }
+                    });
+
+                    if (self.patient.is_signed_in === false) {
+                        alert('Error: GET /api/de.pharmachain.Patient');
+                        self.clear_patient();
+                    }
+
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        },
+        clear_patient: function () {
+            this.patient = {
+                is_signed_in: false,
+                id: 'p_0001',
+                firstName: null,
+                lastName: null,
+                money: null,
+                insurance: null
+            };
+            this.receipts = [];
+        },
         acceptOrder(){
             let self = this;
             this.showDialogOffer = false
@@ -52,8 +102,7 @@ module.exports = {
                 }
             });
         },
-        reload_r() {
-
+        get_patient_receipts: function () {
             this.receipts = [];
             let self = this;
 
@@ -63,15 +112,14 @@ module.exports = {
                 Accept: "application/json",
                 url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
                 success: function (data) {
-                    console.log(data);
-                    data.forEach(function (d) {
-                        console.log(d.prescription)
-                        self.receipts.push({
-                            id: d.id,
-                            name: d.prescription,
-                            date: "20.11.2018"
-                        });
-                        self.r_index = d.id
+                    data.forEach(function (receipt) {
+                        if (receipt.patient.indexOf(self.patient.id) !== -1) {
+                            self.receipts.push({
+                                name: receipt.prescription,
+                                date: "20.11.2018"
+                            });
+                        }
+
                     })
                 },
                 error: function (response) {

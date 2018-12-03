@@ -58,50 +58,50 @@
                                 "insurance": "resource:de.pharmachain.Insurance#i_0001"
 
                             }),
-                            success: function () {
-                                // i_0001/doc_0001/p_0001/r_0001
-                                $.ajax({
-                                    type: 'POST',
-                                    contentType: "application/json",
-                                    Accept: "application/json",
-                                    url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Receipt',
-                                    data: JSON.stringify({
-                                        $class: "de.pharmachain.Receipt",
-                                        id: "r_0001",
-                                        prescription: 'Paracetamol',
-                                        doctor: "resource:de.pharmachain.Doctor#doc_0001",
-                                        patient: "resource:de.pharmachain.Patient#p_0001"
-
-                                    }),
-                                    success: function () {
-                                        console.log("Build r_0001")
-                                    },
-                                    error: function (response) {
-                                        console.log(response)
-                                    }
-                                });
-                                // i_0001/doc_0001/p_0001/r_0002
-                                $.ajax({
-                                    type: 'POST',
-                                    contentType: "application/json",
-                                    Accept: "application/json",
-                                    url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Receipt',
-                                    data: JSON.stringify({
-                                        $class: "de.pharmachain.Receipt",
-                                        id: "r_0002",
-                                        prescription: 'Virostatikum',
-                                        doctor: "resource:de.pharmachain.Doctor#doc_0001",
-                                        patient: "resource:de.pharmachain.Patient#p_0001"
-
-                                    }),
-                                    success: function () {
-                                        console.log("Build r_0002")
-                                    },
-                                    error: function (response) {
-                                        console.log(response)
-                                    }
-                                });
-                            },
+                            // success: function () {
+                            //     // i_0001/doc_0001/p_0001/r_0001
+                            //     $.ajax({
+                            //         type: 'POST',
+                            //         contentType: "application/json",
+                            //         Accept: "application/json",
+                            //         url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Receipt',
+                            //         data: JSON.stringify({
+                            //             $class: "de.pharmachain.Receipt",
+                            //             id: "r_0001",
+                            //             prescription: 'Paracetamol',
+                            //             doctor: "resource:de.pharmachain.Doctor#doc_0001",
+                            //             patient: "resource:de.pharmachain.Patient#p_0001"
+                            //
+                            //         }),
+                            //         success: function () {
+                            //             console.log("Build r_0001")
+                            //         },
+                            //         error: function (response) {
+                            //             console.log(response)
+                            //         }
+                            //     });
+                            //     // i_0001/doc_0001/p_0001/r_0002
+                            //     $.ajax({
+                            //         type: 'POST',
+                            //         contentType: "application/json",
+                            //         Accept: "application/json",
+                            //         url: 'http://' + pharma_web_ip + ':3000/api/de.pharmachain.Receipt',
+                            //         data: JSON.stringify({
+                            //             $class: "de.pharmachain.Receipt",
+                            //             id: "r_0002",
+                            //             prescription: 'Virostatikum',
+                            //             doctor: "resource:de.pharmachain.Doctor#doc_0001",
+                            //             patient: "resource:de.pharmachain.Patient#p_0001"
+                            //
+                            //         }),
+                            //         success: function () {
+                            //             console.log("Build r_0002")
+                            //         },
+                            //         error: function (response) {
+                            //             console.log(response)
+                            //         }
+                            //     });
+                            // },
                             error: function (response) {
                                 console.log(response)
                             }

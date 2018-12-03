@@ -63,19 +63,41 @@
                 <md-dialog-title>New receipt</md-dialog-title>
 
                 <md-dialog-content>
+                    <div class="md-layout-item">
+                        <md-field>
+                            <label>Medication</label>
+                            <md-select v-model="new_prescription.name" v-on:click="clear_new_prescription()">
+                                <md-option v-for="medication in medications"  :value="medication.name">
+                                    {{ medication.name }}
+                                </md-option>
+                            </md-select>
+                        </md-field>
+                    </div>
+                    <div class="md-layout-item">
+                        <md-field>
+                            <label>Dosage</label>
+                            <md-select v-model="new_prescription.dosage">
+                                <md-option v-for="dosage in get_dosages()"  :value="dosage">
+                                    {{ dosage }}
+                                </md-option>
+                            </md-select>
+                        </md-field>
+                    </div>
+                    <div class="md-layout-item">
+                        <md-field>
+                            <label>Quantity</label>
+                            <md-select v-model="new_prescription.quantity">
+                                <md-option v-for="quantity in get_quantities()"  :value="quantity">
+                                    {{ quantity }}
+                                </md-option>
+                            </md-select>
+                        </md-field>
+                    </div>
+                    <md-field>
+                        {{new_prescription.name}} {{new_prescription.dosage}} {{new_prescription.quantity}}
+                    </md-field>
 
-                    <md-field>
-                        <label>Medicine Name</label>
-                        <md-input v-model="new_prescription.name"></md-input>
-                    </md-field>
-                    <md-field>
-                        <label>Medicine Dosage</label>
-                        <md-input v-model="new_prescription.dosage"></md-input>
-                    </md-field>
-                    <md-field>
-                        <label>Quantity</label>
-                        <md-input v-model="new_prescription.qan"></md-input>
-                    </md-field>
+
                 </md-dialog-content>
 
                 <md-dialog-actions>

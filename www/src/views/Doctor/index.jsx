@@ -18,8 +18,30 @@ module.exports = {
             new_prescription: {
                 name: "",
                 dosage: "",
-                qan: "",
+                quantity: "",
             },
+            medications: [
+                {
+                    name: "Paracetamol",
+                    dosages: ["250 mg", "500 mg"],
+                    quantities: ["25", "50", "100"]
+                },
+                {
+                    name: "Ibuprofen",
+                    dosages: ["200 mg", "400 mg", "600 mg", "800 mg"],
+                    quantities: ["50", "100", "200"]
+                },
+                {
+                    name: "Ampicillin ",
+                    dosages: ["1000 mg", "2000 mg"],
+                    quantities: ["10", "15"]
+                },
+                {
+                    name: "Clindamycin ",
+                    dosages: ["150 mg", "300 mg", "600 mg"],
+                    quantities: ["5", "10"]
+                }
+            ]
         }
     },
     created: function () {
@@ -68,10 +90,13 @@ module.exports = {
                 insurance: null
             };
             this.receipts = [];
+            this.clear_new_prescription();
+        },
+        clear_new_prescription: function () {
             this.new_prescription = {
                 name: "",
                 dosage: "",
-                qan: "",
+                quantity: "",
             }
         },
         get_patient_receipts: function () {
@@ -91,7 +116,6 @@ module.exports = {
                                 date: "20.11.2018"
                             });
                         }
-
                     })
                 },
                 error: function (response) {
@@ -100,36 +124,63 @@ module.exports = {
             });
         },
         new_receipt: function () {
-            let self = this;
-            $.ajax({
-                type: 'POST',
-                contentType: "application/json",
-                Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
-                data: JSON.stringify({
+            if (this.new_prescription.name === "") {
+                alert("Specify drug")
+            } else if (this.new_prescription.dosage === "") {
+                alert("Specify dosage")
+            } else if (this.new_prescription.quantity === "") {
+                alert("Specify quantity")
+            } else {
 
-                    $class: "de.pharmachain.Receipt",
-                    id: md5(self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.qan + Date.now().toString()),
-                    prescription: self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.qan,
-                    doctor: "resource:de.pharmachain.Doctor#doc_0001",
-                    patient: "resource:de.pharmachain.Patient#" + self.patient.id
+                let self = this;
+                $.ajax({
+                    type: 'POST',
+                    contentType: "application/json",
+                    Accept: "application/json",
+                    url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
+                    data: JSON.stringify({
 
-                }),
-                success: function (data) {
-                    self.get_patient_receipts();
-                    self.new_prescription = {
-                        name: "",
-                        dosage: "",
-                        qan: "",
+                        $class: "de.pharmachain.Receipt",
+                        id: md5(self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.qan + Date.now().toString()),
+                        prescription: self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.quantity,
+                        doctor: "resource:de.pharmachain.Doctor#doc_0001",
+                        patient: "resource:de.pharmachain.Patient#" + self.patient.id
+
+                    }),
+                    success: function (data) {
+                        self.get_patient_receipts();
+                        self.clear_new_prescription();
+                    },
+                    error: function (response) {
+                        console.log(response)
+                        alert('Error: POST /api/de.pharmachain.Receipt')
                     }
-                },
-                error: function (response) {
-                    console.log(response)
-                    alert('Error: POST /api/de.pharmachain.Receipt')
+                });
+                this.showDialog = false
+            }
+        },
+        get_dosages: function () {
+            let d = [];
+            for (let i = 0; i < this.medications.length; i++) {
+                if (this.medications[i].name.toString() === this.new_prescription.name) {
+                    for (let j = 0; j < this.medications[i].dosages.length; j++) {
+                        d.push(this.medications[i].dosages[j]);
+                    }
                 }
-            });
-            this.showDialog = false
-        }
+            }
+            return d;
+        },
+        get_quantities: function () {
+            let q = [];
+            for (let i = 0; i < this.medications.length; i++) {
+                if (this.medications[i].name.toString() === this.new_prescription.name) {
+                    for (let j = 0; j < this.medications[i].quantities.length; j++) {
+                        q.push(this.medications[i].quantities[j]);
+                    }
+                }
+            }
+            return q;
+        },
     },
     components: {
         receipt: function (resolve) {

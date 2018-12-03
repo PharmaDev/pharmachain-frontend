@@ -6,8 +6,27 @@
 
         <md-app-content>
             <div>
+                <div style="margin: 150px" v-if="!patient.is_signed_in">
+                    <md-card md-with-hover md-medium>
+                        <md-ripple>
+                            <md-card-header>
+                                <div class="md-title">ID of the patient</div>
+                            </md-card-header>
 
-                <div>
+                            <md-card-content>
+                                <md-field>
+                                    <label>Patient ID</label>
+                                    <md-input v-model="patient.id"></md-input>
+                                </md-field>
+                            </md-card-content>
+
+                            <md-card-actions>
+                                <md-button v-on:click="set_patient()">OK</md-button>
+                            </md-card-actions>
+                        </md-ripple>
+                    </md-card>
+                </div>
+                <div v-if="patient.is_signed_in">
                     <div class="md-layout">
                         <div class="md-layout-item md-size-30" style="max-width: 200px">
                             <md-card>
@@ -18,8 +37,9 @@
                                 </md-card-media>
 
                                 <md-card-header>
-                                    <div class="md-title">Eric S</div>
+                                    <div class="md-title">{{patient.firstName}} {{patient.lastName}}</div>
                                     <div class="md-subhead">Birthday: 12.07.1995</div>
+                                    <div class="md-subhead">Balance: {{patient.money}}</div>
                                 </md-card-header>
 
                                 <md-card-content>
@@ -64,7 +84,7 @@
                 </div>
 
             </div>
-            <md-dialog :md-active.sync="showDialog">
+            <md-dialog :md-active.sync="showDialog" v-if="!patient.is_signed_in">
                 <md-dialog-title>Address of delivery:</md-dialog-title>
 
                 <md-dialog-content>
@@ -114,7 +134,14 @@
             </md-dialog>
         </md-app-content>
     </md-app>
-    <md-button class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;" v-on:click="reload_r()">
-        <md-icon>cached</md-icon>
-    </md-button>
+    <template v-if="patient.is_signed_in">
+        <md-button class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;"
+                   v-on:click="get_patient_receipts()">
+            <md-icon>cached</md-icon>
+        </md-button>
+        <md-button v-if="patient" class="md-fab md-raised" style="position: absolute; bottom: 15px; right: 85px;"
+                   v-on:click="clear_patient()">
+            <md-icon>clear</md-icon>
+        </md-button>
+    </template>
 </div>
