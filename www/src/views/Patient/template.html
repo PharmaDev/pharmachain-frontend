@@ -102,16 +102,16 @@
                             </div>
                             <div v-if="currentTab == 'tab-offers'">
                                 <p class="md-display-2" style="margin: 15px; display: inline-block">Offers</p>
-                                <!--<template v-for="offer in offers">-->
+                                <!--<template v-for="offer in open_offers">-->
                                 <!--<offer v-bind:data="offer" v-bind:select="selectOffer"></offer>-->
                                 <!--</template>-->
-                                <md-card style="margin-bottom: 15px;" v-for="offer in offers">
+                                <md-card style="margin-bottom: 15px;" v-for="offer in open_offers">
                                     <div>
                                         <md-card-content style="padding-bottom: 5px">
                                             <p class="md-title">{{offer.name}}</p>
                                             <p class="md-body-1">Delivery: {{offer.date}}</p>
-                                            <p class="md-body-1">Pharmacy: Apotheke</p>
-                                            <p class="md-body-1">Price: 10 Euro</p>
+                                            <p class="md-body-1">Pharmacy: {{offer.pharmacy}}</p>
+                                            <p class="md-body-1">Price: {{offer.patientCost}} Euro</p>
                                             <md-badge v-if="true" class="md-square" :md-content="offer.dist"
                                                       style="background: green; top: 15px; right: 15px"></md-badge>
                                         </md-card-content>

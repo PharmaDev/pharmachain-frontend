@@ -5,6 +5,7 @@ module.exports = {
     replace: true,
     data: function () {
         return {
+            doctor_id: "doc_0001",
             patient: {
                 is_signed_in: false,
                 id: null,
@@ -100,28 +101,51 @@ module.exports = {
             }
         },
         get_patient_receipts: function () {
-            this.receipts = [];
+
             let self = this;
 
             $.ajax({
-                type: 'GET',
-                contentType: "application/json",
-                Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
-                success: function (data) {
-                    data.forEach(function (receipt) {
-                        if (receipt.patient.indexOf(self.patient.id) !== -1) {
-                            self.receipts.push({
-                                name: receipt.prescription,
-                                date: "20.11.2018"
-                            });
-                        }
-                    })
-                },
-                error: function (response) {
-                    console.log(response)
+                    type: 'GET',
+                    contentType: "application/json",
+                    Accept: "application/json",
+                    url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
+                    success: function (data) {
+                        self.receipts = [];
+                        data.forEach(function (receipt) {
+                            if (receipt.patient.indexOf(self.patient.id) !== -1) {
+                                self.receipts.push({
+                                        prescription: receipt.prescription,
+                                        date: "20.11.2018",
+                                        state: receipt.state,
+                                        id: receipt.id,
+                                        doctor: receipt.doctor,
+                                        patient: receipt.patient,
+                                    }
+                                );
+                            }
+                        })
+                        self.receipts = self.receipts.reverse();
+                    },
+                    error: function (response) {
+                        console.log(response)
+                    }
                 }
-            });
+            )
+            ;
+        },
+        get_date_time() {
+            var d = new Date(),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear(),
+                hours = d.getHours(),
+                minute = d.getMinutes(),
+                second = d.getSeconds();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-') + ' ' + [hours, minute, second].join(':');
         },
         new_receipt: function () {
             if (this.new_prescription.name === "") {
@@ -141,9 +165,9 @@ module.exports = {
                     data: JSON.stringify({
 
                         $class: "de.pharmachain.Receipt",
-                        id: md5(self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.qan + Date.now().toString()),
-                        prescription: self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.quantity,
-                        doctor: "resource:de.pharmachain.Doctor#doc_0001",
+                        id: md5(self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.quantity + Date.now().toString()),
+                        prescription: self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.quantity + ' ' + self.get_date_time(),
+                        doctor: "resource:de.pharmachain.Doctor#" + self.doctor_id,
                         patient: "resource:de.pharmachain.Patient#" + self.patient.id
 
                     }),
@@ -158,7 +182,8 @@ module.exports = {
                 });
                 this.showDialog = false
             }
-        },
+        }
+        ,
         get_dosages: function () {
             let d = [];
             for (let i = 0; i < this.medications.length; i++) {
@@ -169,7 +194,8 @@ module.exports = {
                 }
             }
             return d;
-        },
+        }
+        ,
         get_quantities: function () {
             let q = [];
             for (let i = 0; i < this.medications.length; i++) {
@@ -180,11 +206,14 @@ module.exports = {
                 }
             }
             return q;
-        },
+        }
+        ,
     },
     components: {
         receipt: function (resolve) {
             require(['../Receipte/index.jsx'], resolve);
         }
-    },
-};
+    }
+    ,
+}
+;

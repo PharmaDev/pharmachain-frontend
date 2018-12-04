@@ -8,10 +8,19 @@
             <div>
                 <div style="margin: 150px" v-if="!patient.is_signed_in">
                     <md-card md-with-hover md-medium>
+
+
                         <md-ripple>
                             <md-card-header>
-                                <div class="md-title">ID of the patient</div>
+                                <div class="md-title">Login</div>
                             </md-card-header>
+
+                            <md-card-content>
+                                <md-field>
+                                    <label>Doctor ID</label>
+                                    <md-input v-model="doctor_id"></md-input>
+                                </md-field>
+                            </md-card-content>
 
                             <md-card-content>
                                 <md-field>
@@ -52,7 +61,20 @@
                         <div class="md-layout-item">
                             <p class="md-display-2" style="margin: 15px">Receipts</p>
                             <template v-for="receipt in receipts">
-                                <receipt v-bind:data="receipt"></receipt>
+                                <!--<receipt v-bind:data="receipt"></receipt>-->
+
+                                <md-card style="margin-bottom: 15px;">
+                                    <div>
+                                        <md-card-content style="padding-bottom: 5px">
+                                            <p class="md-title">{{receipt.prescription}}</p>
+                                            <p class="md-body-1">Date: {{receipt.date}}</p>
+                                            <md-badge v-if="receipt.state.toString()==='open'" class="md-square"
+                                                      md-content="Active"
+                                                      style="background: green; top: 15px; right: 15px"></md-badge>
+                                        </md-card-content>
+                                    </div>
+                                </md-card>
+
                             </template>
                         </div>
                     </div>
@@ -67,7 +89,7 @@
                         <md-field>
                             <label>Medication</label>
                             <md-select v-model="new_prescription.name" v-on:click="clear_new_prescription()">
-                                <md-option v-for="medication in medications"  :value="medication.name">
+                                <md-option v-for="medication in medications" :value="medication.name">
                                     {{ medication.name }}
                                 </md-option>
                             </md-select>
@@ -77,7 +99,7 @@
                         <md-field>
                             <label>Dosage</label>
                             <md-select v-model="new_prescription.dosage">
-                                <md-option v-for="dosage in get_dosages()"  :value="dosage">
+                                <md-option v-for="dosage in get_dosages()" :value="dosage">
                                     {{ dosage }}
                                 </md-option>
                             </md-select>
@@ -87,16 +109,16 @@
                         <md-field>
                             <label>Quantity</label>
                             <md-select v-model="new_prescription.quantity">
-                                <md-option v-for="quantity in get_quantities()"  :value="quantity">
+                                <md-option v-for="quantity in get_quantities()" :value="quantity">
                                     {{ quantity }}
                                 </md-option>
                             </md-select>
                         </md-field>
-                    </div>
-                    <md-field>
-                        {{new_prescription.name}} {{new_prescription.dosage}} {{new_prescription.quantity}}
-                    </md-field>
+                        <md-field>
 
+                            {{new_prescription.name}} {{new_prescription.dosage}} {{new_prescription.quantity}}
+                        </md-field>
+                    </div>
 
                 </md-dialog-content>
 

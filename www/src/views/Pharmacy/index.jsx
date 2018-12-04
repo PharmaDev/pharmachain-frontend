@@ -12,13 +12,13 @@ module.exports = {
                 money: null
 
             },
-            open_receipts: [
-                // {id: "xxx"
-                // description: "Paracetamol 500mg 50x",
-                // date: "12.04.2018",
-                // dist: "1.3km"},
+            open_receipts: [],
+            open_receipt_ids: [],
+            offer_manufacturers: [
+                "Bayer",
+                "Lilly",
+                "Pfizer"
             ],
-
             new_offer: {
                 selectedReceipt: null,
                 manufacturer: null,
@@ -27,25 +27,15 @@ module.exports = {
                 patientCost: null
 
             },
-            offer_manufacturers: [
-                "Bayer",
-                "Lilly",
-                "Pfizer"
-            ],
-            offers: [
-                // {id: "xxx",
-                // description: "Paracetamol 500mg 50x",
-                // details: "details",
-                // address: "address",
-                // delivery: "delivery info"},
-            ],
-            offer_receipts_ids: [],
+
+            open_offers: [],
+            archived_offers: [],
+
             billings: [
                 {description: "Paracetamol 500mg 150x", details: "Bayer", address: "address", price: "20 Euro"},
             ],
-            status: "active",
+            offer_view: "active",
             showDialog: false,
-            // selectedReceipt: null,
             newPosts: 0,
             currentTab: "tab-receipts",
             showDialogOrder: false,
@@ -104,24 +94,39 @@ module.exports = {
                 Accept: "application/json",
                 url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer',
                 success: function (data) {
-                    self.offers = [];
-                    self.offer_receipts_ids = [];
+                    self.open_offers = [];
+                    self.archived_offers = [];
                     data.forEach(function (offer) {
                         if (offer.pharmacy.indexOf(self.pharmacy.id) !== -1) {
-                            self.offer_receipts_ids.push(offer.receipt.split('#')[1]);
-                            self.offers.push({
-                                id: offer.id,
-                                description: offer.description,
-                                insuranceCost: 10,
-                                patientCost: 10,
-                                details: "details",
-                                address: "address",
-                                delivery: "delivery info"
-                            });
+
+                            let r_id = offer.receipt.split('#')[1];
+
+                            if (self.open_receipt_ids.includes(r_id)) {
+                                self.open_offers.push({
+                                    id: offer.id,
+                                    description: offer.description,
+                                    insuranceCost: offer.insuranceCost,
+                                    patientCost: offer.patientCost,
+                                    details: "details",
+                                    address: "address",
+                                    delivery: offer.delivery
+                                });
+                            } else {
+                                self.archived_offers.push({
+                                    id: offer.id,
+                                    description: offer.description,
+                                    insuranceCost: offer.insuranceCost,
+                                    patientCost: offer.patientCost,
+                                    details: "details",
+                                    address: "address",
+                                    delivery: offer.delivery
+                                });
+                            }
+
+
                         }
 
                     });
-                    self.get_open_receipts();
                 },
                 error: function (response) {
                     console.log(response)
@@ -140,16 +145,21 @@ module.exports = {
                 url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
                 success: function (data) {
                     self.open_receipts = [];
+                    self.open_receipt_ids = [];
                     data.forEach(function (receipt) {
+
                         if (receipt.state === 'open') {
-                            if (!self.offer_receipts_ids.includes(receipt.id)) {
-                                self.open_receipts.push({
-                                    id: receipt.id,
-                                    description: receipt.prescription,
-                                    date: "20.11.2018",
-                                    dist: "1 km"
-                                });
-                            }
+                            self.open_receipt_ids.push(receipt.id);
+                            self.open_receipts.push({
+                                id: receipt.id,
+                                description: receipt.prescription,
+                                date: "20.11.2018",
+                                dist: "1 km",
+                                doctor: receipt.doctor.split('#')[1],
+                                patient: receipt.patient.split('#')[1],
+                            });
+                            // }
+                            self.get_offers();
                         }
                     })
                 },
@@ -171,7 +181,8 @@ module.exports = {
                             self.pharmacy.name = pharmacy.name;
                             self.pharmacy.money = pharmacy.money;
                             self.pharmacy.is_signed_in = true;
-                            self.get_offers();
+                            self.get_open_receipts();
+
                         }
                     });
 
@@ -218,7 +229,7 @@ module.exports = {
 
                 }),
                 success: function (data) {
-                    self.get_offers();
+                    self.get_open_receipts();
                 },
                 error: function (response) {
                     console.log(response)
@@ -266,7 +277,7 @@ module.exports = {
             this.newPosts = 0
         },
         checkNewPosts(activeTab) {
-            if (activeTab !== 'tab-offers' && !this.checkInterval) {
+            if (activeTab !== 'tab-open_offers' && !this.checkInterval) {
                 this.checkInterval = window.setInterval(() => {
                     if (this.newPosts === 99) {
                         this.newPosts = '99+'
