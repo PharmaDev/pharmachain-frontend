@@ -92,7 +92,7 @@ module.exports = {
                 type: 'GET',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer',
+                url: window.baseUrl + '/api/de.pharmachain.Offer',
                 success: function (data) {
                     self.open_offers = [];
                     self.archived_offers = [];
@@ -142,7 +142,7 @@ module.exports = {
                 type: 'GET',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
+                url: window.baseUrl + '/api/de.pharmachain.Receipt',
                 success: function (data) {
                     self.open_receipts = [];
                     self.open_receipt_ids = [];
@@ -174,7 +174,7 @@ module.exports = {
                 type: 'GET',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Pharmacy',
+                url:window.baseUrl +  '/api/de.pharmachain.Pharmacy',
                 success: function (data) {
                     data.forEach(function (pharmacy) {
                         if (self.pharmacy.id === pharmacy.id) {
@@ -216,7 +216,7 @@ module.exports = {
                 type: 'POST',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer',
+                url:window.baseUrl +  '/api/de.pharmachain.Offer',
                 data: JSON.stringify({
                     $class: "de.pharmachain.Offer",
                     id: md5(Date.now().toString()),
@@ -244,7 +244,7 @@ module.exports = {
                 type: 'DELETE',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer/' + value.id,
+                url: window.baseUrl + '/api/de.pharmachain.Offer/' + value.id,
                 success: function () {
                     self.get_offers()
                 },

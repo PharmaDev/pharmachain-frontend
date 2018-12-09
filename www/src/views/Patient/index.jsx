@@ -51,7 +51,7 @@ module.exports = {
                 type: 'GET',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Patient',
+                url:  window.baseUrl + '/api/de.pharmachain.Patient',
                 success: function (data) {
                     data.forEach(function (patient) {
                         if (self.patient.id === patient.id) {
@@ -100,7 +100,7 @@ module.exports = {
                 type: 'GET',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
+                url:  window.baseUrl + '/api/de.pharmachain.Receipt',
                 success: function (data) {
                     self.receipts = [];
                     self.receipts_archive = [];
@@ -142,7 +142,7 @@ module.exports = {
                 type: 'GET',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer',
+                url: window.baseUrl +  '/api/de.pharmachain.Offer',
                 success: function (data) {
 
                     self.open_offers = [];
@@ -179,7 +179,7 @@ module.exports = {
                 type: 'POST',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.OfferAccepted',
+                url: window.baseUrl +  '/api/de.pharmachain.OfferAccepted',
                 data: JSON.stringify({
                     $class: "de.pharmachain.OfferAccepted",
                     receipt: value.receipt,
@@ -207,7 +207,7 @@ module.exports = {
                 type: 'POST',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.PositionSelection',
+                url: window.baseUrl +  '/api/de.pharmachain.PositionSelection',
                 data: JSON.stringify({
                     $class: "de.pharmachain.PositionSelection",
                     receipt: "resource:de.pharmachain.Receipt#0001",

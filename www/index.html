@@ -11,14 +11,14 @@
 
 <body style="height: 100%">
 <div id="app" style="height: 100%">
-    <div v-if="!rolle">
-        <button v-on:click="rolle='doctor'">Doctor</button>
-        <button v-on:click="rolle='patient'">Patient</button>
-        <button v-on:click="rolle='pharmacy'">Pharmacy</button>
+    <div v-if="currentRoute!=='doctor' && currentRoute!=='patient' && currentRoute!=='pharmacy'">
+        <a href="/#/doctor" onclick="location.reload()">Doctor</a>
+        <a href="/#/patient" onclick="location.reload()">Patient</a>
+        <a href="/#/pharmacy" onclick="location.reload()">Pharmacy</a>
     </div>
-    <doctor v-if="rolle=='doctor'"></doctor>
-    <patient v-if="rolle=='patient'"></patient>
-    <pharmacy v-if="rolle=='pharmacy'"></pharmacy>
+    <doctor v-if="currentRoute=='doctor'"></doctor>
+    <patient v-if="currentRoute=='patient'"></patient>
+    <pharmacy v-if="currentRoute=='pharmacy'"></pharmacy>
 </div>
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/vue-material@beta"></script>

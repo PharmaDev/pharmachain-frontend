@@ -3,13 +3,14 @@ import Vue from 'vue'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 
-
+window.baseUrl = 'http://192.168.41.131:3000';
 
 window.app = new Vue({
     el: '#app',
     // store: store,
     data: {
         rolle: null,
+        currentRoute: window.location.href.split("/").slice(-1)[0]
     },
 
     mounted: function () {
