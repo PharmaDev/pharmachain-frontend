@@ -1,4 +1,5 @@
 var md5 = require('js-md5');
+var moment = require('moment');
 
 module.exports = {
     template: require('./template.html'),
@@ -8,14 +9,19 @@ module.exports = {
             doctor_id: "doc_0001",
             patient: {
                 is_signed_in: false,
-                id: null,
+                id: "p_0001",
                 firstName: null,
                 lastName: null,
                 money: null,
-                insurance: null
+                insurance: null,
+                birthday: null,
+                def_street: null,
+                def_city:null,
+                def_plz:null,
             },
             showDialog: false,
             receipts: [],
+            insurance: null,
             new_prescription: {
                 name: "",
                 dosage: "",
@@ -47,7 +53,6 @@ module.exports = {
     },
     created: function () {
         Vue.use(VueMaterial.default)
-
         this.clear_patient();
     },
     methods: {
@@ -61,10 +66,9 @@ module.exports = {
                 success: function (data) {
                     data.forEach(function (patient) {
                         if (self.patient.id === patient.id) {
-                            self.patient.firstName = patient.firstName;
-                            self.patient.lastName = patient.lastName;
-                            self.patient.money = patient.money;
-                            self.patient.insurance = patient.insurance;
+                            console.log(patient);
+                            self.patient = patient;
+                            self.patient.birthday = moment(patient.birthday).format('L');
                             self.patient.is_signed_in = true;
                             self.get_patient_receipts();
                         }
@@ -84,7 +88,7 @@ module.exports = {
         clear_patient: function () {
             this.patient = {
                 is_signed_in: false,
-                id: 'p_0001',
+                id: "p_0001",
                 firstName: null,
                 lastName: null,
                 money: null,
@@ -99,6 +103,9 @@ module.exports = {
                 dosage: "",
                 quantity: "",
             }
+        },
+        get_patient_insurance: function() {
+            // TODO would be nice
         },
         get_patient_receipts: function () {
 

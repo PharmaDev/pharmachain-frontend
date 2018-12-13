@@ -8,11 +8,9 @@
             <div>
                 <div style="margin: 150px" v-if="!patient.is_signed_in">
                     <md-card md-with-hover md-medium>
-
-
                         <md-ripple>
                             <md-card-header>
-                                <div class="md-title">Login</div>
+                                <div class="md-title">Rezept ausstellen</div>
                             </md-card-header>
 
                             <md-card-content>
@@ -28,7 +26,6 @@
                                     <md-input v-model="patient.id"></md-input>
                                 </md-field>
                             </md-card-content>
-
                             <md-card-actions>
                                 <md-button v-on:click="set_patient()">OK</md-button>
                             </md-card-actions>
@@ -48,14 +45,10 @@
 
                                 <md-card-header>
                                     <div class="md-title">{{patient.firstName}} {{patient.lastName}}</div>
-                                    <div class="md-subhead">Birthday: 12.07.1995</div>
+                                    <div class="md-subhead">Birthday: {{patient.birthday}}</div>
+                                    <div class="md-subhead">Money: {{patient.money}}</div>
+                                    <div class="md-subhead">Insurance: {{patient.insurance}}</div>
                                 </md-card-header>
-
-                                <md-card-content>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum
-                                    odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate
-                                    pariatur in deleniti minus sint. Excepturi.
-                                </md-card-content>
                             </md-card>
                         </div>
                         <div class="md-layout-item">
