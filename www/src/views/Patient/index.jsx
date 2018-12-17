@@ -16,6 +16,9 @@ module.exports = {
             receipts_open: [],
             receipts_archive: [],
             receipts_progress: [],
+            receipts_progress_ids: function () {
+                return this.receipts_progress.map(receipt => receipt.id);
+            },
             open_offers: [],
             status: "open",
             showDialog: false,
@@ -119,7 +122,6 @@ module.exports = {
         // TODO Utility class
         get_patient_offers: function () {
             console.log("get_patient_offers()");
-
             let self = this;
             $.ajax({
                 type: 'GET',
@@ -127,35 +129,23 @@ module.exports = {
                 Accept: "application/json",
                 url: window.baseUrl + '/api/de.pharmachain.Offer',
                 success: function (data) {
-
                     self.open_offers = [];
                     data.forEach(function (offer) {
-
-                        console.log("x1", self.open_receipt_ids.includes(offer.receipt.split('#')[1]), offer.receipt.split('#')[1]);
-
-                        if (self.open_receipt_ids.includes(offer.receipt.split('#')[1])) {
-                            self.open_offers.push({
-                                id: offer.id,
-                                name: offer.description,
-                                date: "20.11.2018",
-                                dist: offer.delivery,
-                                insuranceCost: 3,
-                                patientCost: 3,
-                                pharmacy: offer.pharmacy.split('#')[1],
-                                receipt: offer.receipt
-                            });
+                        // if offer matches an receipt TODO remove after auth
+                        // pharmacy: offer.pharmacy.split('#')[1],
+                        if (self.receipts_progress_ids().includes(offer.receipt.split('#')[1])) {
+                            self.open_offers.push(offer);
                         }
-
-
-                    })
+                    });
                 },
                 error: function (response) {
                     console.log(response)
                 }
+
             });
         },
         post_OfferAccepted(value) {
-            console.log("post_OfferAccepted", value)
+            console.log("post_OfferAccepted", JSON.stringify(value));
 
             let self = this;
             $.ajax({
@@ -166,7 +156,8 @@ module.exports = {
                 data: JSON.stringify({
                     $class: "de.pharmachain.OfferAccepted",
                     receipt: value.receipt,
-                    acceptedOffer: "resource:de.pharmachain.Offer#" + value.id
+                    acceptedOffer: "resource:de.pharmachain.Offer#" + value.id,
+                    ts: Date.now()
                 }),
                 success: function (data) {
                     self.showDialogOffer = false
@@ -212,6 +203,7 @@ module.exports = {
             });
 
             this.showDialog = false;
+            // TODO auto reload show changes instantly
         },
         selectOffer(value) {
             this.showDialogOffer = true;

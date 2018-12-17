@@ -3,6 +3,11 @@
         <md-app-toolbar class="md-primary">
             <span class="md-title">PharmaChain </span><span class="md-body-1" style="margin-top: 2px; margin-left: 7px">┃ Patient</span>
         </md-app-toolbar>
+        <!-- TODO for doctor -->
+        <!-- <md-app-toolbar class="md-primary" v-if="doctor.is_signed_in">
+            <span class="md-title">Logged in as: {{pharmacy.name}}</span><span class="md-body-1" style="margin-top: 2px; margin-left: 7px">┃
+                Balance: {{pharmacy.money}}</span>
+        </md-app-toolbar> -->
 
         <md-app-content>
             <!-- Login Area -->
@@ -97,6 +102,7 @@
                                                     <p class="md-body-1">Dosage: {{receipt.dosage}}</p>
                                                     <p class="md-body-1">Quantity: {{receipt.quantity}}</p>
                                                     <p class="md-body-1">Presribed at: {{receipt.createdAt_moment}}</p>
+                                                    <!-- Load PositionSelection Transaction and get Date to show here! -->
                                                 </md-card-content>
                                             </div>
                                         </md-card>
@@ -120,20 +126,22 @@
 
 
                             </div>
+                            <!-- Offer View -->
                             <div v-if="currentTab == 'tab-offers'">
                                 <p class="md-display-2" style="margin: 15px; display: inline-block">Offers</p>
                                 <md-card style="margin-bottom: 15px;" v-for="offer in open_offers">
                                     <div>
                                         <md-card-content style="padding-bottom: 5px">
                                             <p class="md-title">{{offer.name}}</p>
-                                            <p class="md-body-1">Delivery: {{offer.date}}</p>
+                                            <p class="md-body-1">Delivery: {{offer.deliveryDetails}}</p>
                                             <p class="md-body-1">Pharmacy: {{offer.pharmacy}}</p>
-                                            <p class="md-body-1">Price: {{offer.patientCost}} Euro</p>
-                                            <md-badge v-if="true" class="md-square" :md-content="offer.dist"
-                                                      style="background: green; top: 15px; right: 15px"></md-badge>
+                                            <p class="md-body-1">Price for Patient: {{offer.patientCost}} Euro</p>
+                                            <!-- TODO remove -->
+                                            <!-- <md-badge v-if="true" class="md-square" :md-content="offer.dist"
+                                                      style="background: green; top: 15px; right: 15px"></md-badge> -->
                                         </md-card-content>
                                         <md-button v-on:click="post_OfferAccepted(offer)"
-                                                   style="background-color: green">
+                                                   style="background-color: green;">
                                             Accept
                                         </md-button>
                                     </div>

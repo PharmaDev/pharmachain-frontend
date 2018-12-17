@@ -1,5 +1,7 @@
 var md5 = require('js-md5');
 var numeral = require("numeral");
+var moment = require('moment');
+
 module.exports = {
     template: require('./template.html'),
     replace: true,
@@ -10,7 +12,6 @@ module.exports = {
                 id: null,
                 name: null,
                 money: null
-
             },
             open_receipts: [],
             open_receipt_ids: [],
@@ -41,6 +42,7 @@ module.exports = {
             showDialogOrder: false,
             selectedOrder: null,
             selectedYears: [2018, 2017],
+            // TODO demo for statistics
             datasets: {
                 2018: {
                     label: 'Paracetamol',
@@ -80,8 +82,6 @@ module.exports = {
     created: function () {
         this.checkNewPosts()
         this.clear_pharmacy();
-
-
     },
     methods: {
         get_offers: function () {
@@ -144,17 +144,24 @@ module.exports = {
                 Accept: "application/json",
                 url: window.baseUrl + '/api/de.pharmachain.Receipt',
                 success: function (data) {
+                    console.log(JSON.stringify(data));
                     self.open_receipts = [];
                     self.open_receipt_ids = [];
                     data.forEach(function (receipt) {
-
-                        if (receipt.state === 'open') {
+                        console.log(JSON.stringify(receipt));
+                        if (receipt.state === 'progress') {
                             self.open_receipt_ids.push(receipt.id);
                             self.open_receipts.push({
                                 id: receipt.id,
+                                // TODO remove
                                 description: receipt.prescription,
-                                date: "20.11.2018",
-                                dist: "1 km",
+                                name: receipt.name,
+                                dosage: receipt.dosage,
+                                quantity: receipt.quantity,
+                                date: moment(receipt.createdAt).format('L'),
+                                deliveryStreet: receipt.deliveryStreet,
+                                deliveryCity: receipt.deliveryCity,
+                                deliveryPostal: receipt.deliveryPostal,
                                 doctor: receipt.doctor.split('#')[1],
                                 patient: receipt.patient.split('#')[1],
                             });
@@ -178,8 +185,7 @@ module.exports = {
                 success: function (data) {
                     data.forEach(function (pharmacy) {
                         if (self.pharmacy.id === pharmacy.id) {
-                            self.pharmacy.name = pharmacy.name;
-                            self.pharmacy.money = pharmacy.money;
+                            self.pharmacy = pharmacy;
                             self.pharmacy.is_signed_in = true;
                             self.get_open_receipts();
 
@@ -219,9 +225,12 @@ module.exports = {
                 url:window.baseUrl +  '/api/de.pharmachain.Offer',
                 data: JSON.stringify({
                     $class: "de.pharmachain.Offer",
-                    id: md5(Date.now().toString()),
-                    description: self.new_offer.selectedOrder.description + ' von ' + self.new_offer.manufacturer + '; ' + self.pharmacy.name,
-                    delivery: self.new_offer.delivery,
+                    id: md5(JSON.stringify(self.new_offer.selectOrder) + Date.now().toString()),
+                    createdAt: Date.now(),
+                    stateChangeAt: Date.now(),
+                    deliveryDetails: self.new_offer.delivery,
+                    deliveryBy: self.new_offer.delivery,
+                    producer: self.new_offer.manufacturer,
                     insuranceCost: parseInt(self.new_offer.patientCost),
                     patientCost: parseInt(self.new_offer.patientCost),
                     pharmacy: "resource:de.pharmachain.Pharmacy#" + self.pharmacy.id,
