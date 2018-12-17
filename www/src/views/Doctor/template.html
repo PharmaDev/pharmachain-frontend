@@ -5,12 +5,13 @@
         </md-app-toolbar>
 
         <md-app-content>
+            <!-- Login Area -->
             <div>
                 <div style="margin: 150px" v-if="!patient.is_signed_in">
                     <md-card md-with-hover md-medium>
                         <md-ripple>
                             <md-card-header>
-                                <div class="md-title">Rezept ausstellen</div>
+                                <div class="md-title">Create a receipt</div>
                             </md-card-header>
 
                             <md-card-content>
@@ -33,11 +34,14 @@
                     </md-card>
                 </div>
 
+                <!-- Create Receipt Area -->
                 <div v-if="patient.is_signed_in">
                     <div class="md-layout">
+                        <!-- Patient Window -->
                         <div class="md-layout-item md-size-30" style="max-width: 200px">
                             <md-card>
                                 <md-card-media style="text-align: center; padding-top: 40px">
+                                    <!-- TODO Download, add reference to source, copyright? -->
                                     <img style=" width: 150px; border-radius: 150px;"
                                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsAUelg7yg0mepGMf-N93hh6E9XrLnKwsKa4YEQ6swhDknk4F9eQ"
                                          alt="People">
@@ -46,24 +50,32 @@
                                 <md-card-header>
                                     <div class="md-title">{{patient.firstName}} {{patient.lastName}}</div>
                                     <div class="md-subhead">Birthday: {{patient.birthday}}</div>
-                                    <div class="md-subhead">Money: {{patient.money}}</div>
-                                    <div class="md-subhead">Insurance: {{patient.insurance}}</div>
+                                    <!-- TODO Add method to get name of insurance from API -->
+                                    <!-- <div class="md-subhead">Insurance: {{patient.insurance}}</div> -->
                                 </md-card-header>
+
+                                <md-card-content>
+                                    Balance: {{patient.money}} </br>
+                                </md-card-content>
                             </md-card>
                         </div>
+                        <!-- List all receipts for this patient -->
                         <div class="md-layout-item">
                             <p class="md-display-2" style="margin: 15px">Receipts</p>
                             <template v-for="receipt in receipts">
-                                <!--<receipt v-bind:data="receipt"></receipt>-->
-
+                                <!-- TODO REMOVE? -->
                                 <md-card style="margin-bottom: 15px;">
                                     <div>
                                         <md-card-content style="padding-bottom: 5px">
-                                            <p class="md-title">{{receipt.prescription}}</p>
-                                            <p class="md-body-1">Date: {{receipt.date}}</p>
+                                            <p class="md-title">{{receipt.name}}</p>
+                                            <p class="md-body-1">Dosage: {{receipt.dosage}}</p>
+                                            <p class="md-body-1">Quantity: {{receipt.quantity}}</p>
+                                            <p class="md-body-1">Presribed at: {{receipt.createdAt_moment}}</p>
+                                            <!-- TODO Should a doctor be allowed to see the state of the receipt? -->
                                             <md-badge v-if="receipt.state.toString()==='open'" class="md-square"
                                                       md-content="Active"
-                                                      style="background: green; top: 15px; right: 15px"></md-badge>
+                                                      style="background: green; top: 15px; right: 15px">
+                                            </md-badge>
                                         </md-card-content>
                                     </div>
                                 </md-card>
@@ -74,6 +86,9 @@
                 </div>
 
             </div>
+
+            <!-- Modal dialog to create a receipt -->
+            <!-- TODO Refactor into Component -->
             <md-dialog :md-active.sync="showDialog">
                 <md-dialog-title>New receipt</md-dialog-title>
 
@@ -108,7 +123,6 @@
                             </md-select>
                         </md-field>
                         <md-field>
-
                             {{new_prescription.name}} {{new_prescription.dosage}} {{new_prescription.quantity}}
                         </md-field>
                     </div>
@@ -123,6 +137,8 @@
             </md-dialog>
         </md-app-content>
     </md-app>
+
+    <!-- Floating action buttons, shown only if patient is signed in. -->
     <template v-if="patient.is_signed_in">
         <md-button v-if="patient" class="md-fab md-primary" style="position: absolute; bottom: 15px; right: 15px;"
                    v-on:click="showDialog = true">

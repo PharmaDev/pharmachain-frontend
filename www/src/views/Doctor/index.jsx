@@ -6,6 +6,9 @@ module.exports = {
     replace: true,
     data: function () {
         return {
+            // TODO remove demo value
+            doctor_id_preset: "doc_0001",
+            patient_id_preset: "p_0001",
             doctor_id: "doc_0001",
             patient: {
                 is_signed_in: false,
@@ -16,8 +19,8 @@ module.exports = {
                 insurance: null,
                 birthday: null,
                 def_street: null,
-                def_city:null,
-                def_plz:null,
+                def_city: null,
+                def_plz: null,
             },
             showDialog: false,
             receipts: [],
@@ -27,8 +30,7 @@ module.exports = {
                 dosage: "",
                 quantity: "",
             },
-            medications: [
-                {
+            medications: [{
                     name: "Paracetamol",
                     dosages: ["250 mg", "500 mg"],
                     quantities: ["25x", "50x", "100x"]
@@ -104,41 +106,35 @@ module.exports = {
                 quantity: "",
             }
         },
-        get_patient_insurance: function() {
+        get_patient_insurance: function () {
             // TODO would be nice
+        },
+        get_doctor: function () {
+            // TODO would be really, really nice #2
         },
         get_patient_receipts: function () {
 
             let self = this;
 
             $.ajax({
-                    type: 'GET',
-                    contentType: "application/json",
-                    Accept: "application/json",
-                    url:  window.baseUrl + '/api/de.pharmachain.Receipt',
-                    success: function (data) {
-                        self.receipts = [];
-                        data.forEach(function (receipt) {
-                            if (receipt.patient.indexOf(self.patient.id) !== -1) {
-                                self.receipts.push({
-                                        prescription: receipt.prescription,
-                                        date: "20.11.2018",
-                                        state: receipt.state,
-                                        id: receipt.id,
-                                        doctor: receipt.doctor,
-                                        patient: receipt.patient,
-                                    }
-                                );
-                            }
-                        })
-                        self.receipts = self.receipts.reverse();
-                    },
-                    error: function (response) {
-                        console.log(response)
-                    }
+                type: 'GET',
+                contentType: "application/json",
+                Accept: "application/json",
+                url: window.baseUrl + '/api/de.pharmachain.Receipt',
+                success: function (data) {
+                    self.receipts = [];
+                    data.forEach(function (receipt) {
+                        if (receipt.patient.indexOf(self.patient.id) !== -1) {
+                            receipt.createdAt_moment = moment(receipt.createdAt).format('L');
+                            self.receipts.push(receipt);
+                        }
+                    })
+                    self.receipts = self.receipts.reverse();
+                },
+                error: function (response) {
+                    console.log(response)
                 }
-            )
-            ;
+            });
         },
         get_date_time() {
             var d = new Date(),
@@ -168,12 +164,17 @@ module.exports = {
                     type: 'POST',
                     contentType: "application/json",
                     Accept: "application/json",
-                    url:  window.baseUrl + '/api/de.pharmachain.Receipt',
+                    url: window.baseUrl + '/api/de.pharmachain.Receipt',
                     data: JSON.stringify({
-
                         $class: "de.pharmachain.Receipt",
                         id: md5(self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.quantity + Date.now().toString()),
-                        prescription: self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.quantity + ' ' + self.get_date_time(),
+                        // prescription: self.new_prescription.name + ' ' + self.new_prescription.dosage + ' ' + self.new_prescription.quantity + ' ' + self.get_date_time(),
+                        stateChangeAt: Date.now(),
+                        createdAt: Date.now(),
+                        name: self.new_prescription.name,
+                        dosage: self.new_prescription.dosage,
+                        quantity: self.new_prescription.quantity,
+                        // TODO validate
                         doctor: "resource:de.pharmachain.Doctor#" + self.doctor_id,
                         patient: "resource:de.pharmachain.Patient#" + self.patient.id
 
@@ -189,8 +190,7 @@ module.exports = {
                 });
                 this.showDialog = false
             }
-        }
-        ,
+        },
         get_dosages: function () {
             let d = [];
             for (let i = 0; i < this.medications.length; i++) {
@@ -201,8 +201,7 @@ module.exports = {
                 }
             }
             return d;
-        }
-        ,
+        },
         get_quantities: function () {
             let q = [];
             for (let i = 0; i < this.medications.length; i++) {
@@ -213,14 +212,11 @@ module.exports = {
                 }
             }
             return q;
-        }
-        ,
+        },
     },
     components: {
         receipt: function (resolve) {
             require(['../Receipte/index.jsx'], resolve);
         }
-    }
-    ,
-}
-;
+    },
+};
