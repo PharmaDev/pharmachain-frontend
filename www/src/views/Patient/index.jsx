@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 module.exports = {
     template: require('./template.html'),
     replace: true,
@@ -11,21 +13,11 @@ module.exports = {
                 money: null,
                 insurance: null
             },
-            receipts: [
-                {id: "xxx", name: "Paracetamol 500mg 50x", date: "12.04.2018"},
-
-            ],
-
-            open_receipt_ids: [],
+            receipts_open: [],
             receipts_archive: [],
-            archive_receipt_ids: [],
-            open_offers: [
-                // {id: "xxx", name: "Paracetamol 500mg 50x", date: "40 min", dist: "1.3km"},
-            ],
-            // offer_choosing:{
-            //
-            // },
-            status: "active",
+            receipts_progress: [],
+            open_offers: [],
+            status: "open",
             showDialog: false,
             selectedReceipt: null,
             newPosts: 0,
@@ -39,27 +31,24 @@ module.exports = {
     },
     created: function () {
         this.checkNewPosts();
-
         this.clear_patient();
-
-
     },
     methods: {
+        // TODO refactor, this exists in doctor already!
         set_patient() {
             let self = this;
             $.ajax({
                 type: 'GET',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Patient',
+                url: window.baseUrl + '/api/de.pharmachain.Patient',
                 success: function (data) {
                     data.forEach(function (patient) {
                         if (self.patient.id === patient.id) {
-                            self.patient.firstName = patient.firstName;
-                            self.patient.lastName = patient.lastName;
-                            self.patient.money = patient.money;
-                            self.patient.insurance = patient.insurance;
+                            self.patient = patient;
+                            self.patient.birthday = moment(patient.birthday).format('L');
                             self.patient.is_signed_in = true;
+                            console.log(JSON.stringify(patient));
                             self.get_patient_receipts();
                         }
                     });
@@ -84,14 +73,15 @@ module.exports = {
                 money: null,
                 insurance: null
             };
-            this.receipts = [];
+            // rece
+            this.receipts_open = [];
             this.receipts_archive = [];
-            this.open_receipt_ids = [];
-            this.receipts_archive = [];
+            this.receipts_progress = [];
             this.offers = [];
-            this.status = "active";
+            this.status = "open";
         },
 
+        // TODO Move to utility class, as it is used my multiple views
         get_patient_receipts: function () {
             console.log("get_patient_receipts()");
 
@@ -100,33 +90,25 @@ module.exports = {
                 type: 'GET',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Receipt',
+                url: window.baseUrl + '/api/de.pharmachain.Receipt',
                 success: function (data) {
-                    self.receipts = [];
+                    self.receipts_open = [];
                     self.receipts_archive = [];
-                    self.open_receipt_ids = [];
-                    self.receipts_archive = [];
-                    console.log("receipt", data)
+                    self.receipts_progress = [];
                     data.forEach(function (receipt) {
+                        // TODO remove after authentication is implemented
                         if (receipt.patient.indexOf(self.patient.id) !== -1) {
+                            receipt.createdAt_moment = moment(receipt.createdAt).format('L');
                             if (receipt.state === "open") {
-                                self.open_receipt_ids.push(receipt.id)
-                                self.receipts.push({
-                                    id: receipt.id,
-                                    name: receipt.prescription,
-                                    date: "20.11.2018"
-                                });
+                                self.receipts_open.push(receipt);
+                            } else if (receipt.state === "progress") {
+                                self.receipts_progress.push(receipt);
                             } else {
-                                self.archive_receipt_ids.push(receipt.id)
-                                self.receipts_archive.push({
-                                    id: receipt.id,
-                                    name: receipt.prescription,
-                                    date: "20.11.2018"
-                                });
-
+                                self.receipts_archive.push(receipt);
                             }
                         }
                     });
+                    // TODO refactor with jquery .then for readability
                     self.get_patient_offers();
                 },
                 error: function (response) {
@@ -134,6 +116,7 @@ module.exports = {
                 }
             });
         },
+        // TODO Utility class
         get_patient_offers: function () {
             console.log("get_patient_offers()");
 
@@ -142,7 +125,7 @@ module.exports = {
                 type: 'GET',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.Offer',
+                url: window.baseUrl + '/api/de.pharmachain.Offer',
                 success: function (data) {
 
                     self.open_offers = [];
@@ -179,7 +162,7 @@ module.exports = {
                 type: 'POST',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.OfferAccepted',
+                url: window.baseUrl + '/api/de.pharmachain.OfferAccepted',
                 data: JSON.stringify({
                     $class: "de.pharmachain.OfferAccepted",
                     receipt: value.receipt,
@@ -194,12 +177,16 @@ module.exports = {
                 }
             });
         },
+        /**
+         * 
+         */
         selectOption(value) {
-            console.log(value)
-
+            console.log(value);
             this.showDialog = true;
             this.selectedReceipt = value;
-
+            this.street = this.patient.def_street;
+            this.city = this.patient.def_city;
+            this.post_code = this.patient.def_plz;
         },
         saveOption() {
             let self = this;
@@ -207,13 +194,14 @@ module.exports = {
                 type: 'POST',
                 contentType: "application/json",
                 Accept: "application/json",
-                url: 'http://192.168.41.131:3000/api/de.pharmachain.PositionSelection',
+                url: window.baseUrl + '/api/de.pharmachain.PositionSelection',
                 data: JSON.stringify({
                     $class: "de.pharmachain.PositionSelection",
-                    receipt: "resource:de.pharmachain.Receipt#0001",
+                    receipt: "resource:de.pharmachain.Receipt#" + self.selectedReceipt.id,
                     deliveryStreet: self.street,
                     deliveryCity: self.city,
-                    deliveryPostal: self.post_code
+                    deliveryPostal: self.post_code,
+                    ts: Date.now()
                 }),
                 success: function (data) {
                     console.log(data)
