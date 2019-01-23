@@ -152,11 +152,11 @@ module.exports = {
         },
         new_receipt: function () {
             if (this.new_prescription.name === "") {
-                alert("Specify drug")
+                alert("Please specify the medication!")
             } else if (this.new_prescription.dosage === "") {
-                alert("Specify dosage")
+                alert("Please specify the dosage!")
             } else if (this.new_prescription.quantity === "") {
-                alert("Specify quantity")
+                alert("Please specify the quantity!")
             } else {
 
                 let self = this;

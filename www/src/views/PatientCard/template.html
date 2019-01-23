@@ -1,0 +1,23 @@
+<div class="md-layout-item md-size-30" style="max-width: 200px">
+    <md-card>
+        <md-card-media style="text-align: center; padding-top: 40px">
+            <!-- TODO Copyright -->
+            <img style=" width: 150px; border-radius: 150px;"
+                 src="./patient_demo.png"
+                 alt="Demo image of a patient">
+            <small>Source: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsAUelg7yg0mepGMf-N93hh6E9XrLnKwsKa4YEQ6swhDknk4F9eQ</small>
+        </md-card-media>
+
+        <md-card-header>
+            <div class="md-title">{{firstName}} {{lastName}}</div>
+            <div class="md-subhead">Birthday: {{birthday}}</div>
+            <!-- TODO Add method to get name of insurance from API -->
+            <!-- </div> -->
+        </md-card-header>
+
+        <md-card-content>
+            Balance: {{money}} </br>
+            Insurance: {{insurance}} </br>
+        </md-card-content>
+    </md-card>
+</div>

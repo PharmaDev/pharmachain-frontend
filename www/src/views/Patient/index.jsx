@@ -147,18 +147,22 @@ module.exports = {
         post_OfferAccepted(value) {
             console.log("post_OfferAccepted", JSON.stringify(value));
 
+            let data = JSON.stringify({
+                $class: "de.pharmachain.OfferAccepted",
+                receipt: value.receipt,
+                acceptedOffer: "resource:de.pharmachain.Offer#" + value.id,
+                ts: Date.now()
+            });
+
+            console.log(data);
+
             let self = this;
             $.ajax({
                 type: 'POST',
                 contentType: "application/json",
                 Accept: "application/json",
                 url: window.baseUrl + '/api/de.pharmachain.OfferAccepted',
-                data: JSON.stringify({
-                    $class: "de.pharmachain.OfferAccepted",
-                    receipt: value.receipt,
-                    acceptedOffer: "resource:de.pharmachain.Offer#" + value.id,
-                    ts: Date.now()
-                }),
+                data: data,
                 success: function (data) {
                     self.showDialogOffer = false
                     self.get_patient_receipts();

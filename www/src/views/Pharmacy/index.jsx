@@ -104,22 +104,20 @@ module.exports = {
                             if (self.open_receipt_ids.includes(r_id)) {
                                 self.open_offers.push({
                                     id: offer.id,
-                                    description: offer.description,
+                                    description: offer.producer,
                                     insuranceCost: offer.insuranceCost,
                                     patientCost: offer.patientCost,
-                                    details: "details",
-                                    address: "address",
-                                    delivery: offer.delivery
+                                    deliveryDetails: offer.deliveryDetails,
+                                    receipt: r_id
                                 });
                             } else {
                                 self.archived_offers.push({
                                     id: offer.id,
-                                    description: offer.description,
+                                    description: offer.producer,
                                     insuranceCost: offer.insuranceCost,
                                     patientCost: offer.patientCost,
-                                    details: "details",
-                                    address: "address",
-                                    delivery: offer.delivery
+                                    deliveryDetails: offer.deliveryDetails,
+                                    receipt: r_id
                                 });
                             }
 
@@ -231,7 +229,7 @@ module.exports = {
                     deliveryDetails: self.new_offer.delivery,
                     deliveryBy: self.new_offer.delivery,
                     producer: self.new_offer.manufacturer,
-                    insuranceCost: parseInt(self.new_offer.patientCost),
+                    insuranceCost: parseInt(self.new_offer.insuranceCost),
                     patientCost: parseInt(self.new_offer.patientCost),
                     pharmacy: "resource:de.pharmachain.Pharmacy#" + self.pharmacy.id,
                     receipt: "resource:de.pharmachain.Receipt#" + self.new_offer.selectedOrder.id

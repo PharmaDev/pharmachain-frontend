@@ -11,7 +11,7 @@
                     <md-card md-with-hover md-medium>
                         <md-ripple>
                             <md-card-header>
-                                <div class="md-title">Create a receipt</div>
+                                <div class="md-title">Create a prescription</div>
                             </md-card-header>
 
                             <md-card-content>
@@ -61,7 +61,7 @@
                         </div>
                         <!-- List all receipts for this patient -->
                         <div class="md-layout-item">
-                            <p class="md-display-2" style="margin: 15px">Receipts</p>
+                            <p class="md-display-2" style="margin: 15px">Prescriptions</p>
                             <template v-for="receipt in receipts">
                                 <!-- TODO REMOVE? -->
                                 <md-card style="margin-bottom: 15px;">
@@ -90,7 +90,7 @@
             <!-- Modal dialog to create a receipt -->
             <!-- TODO Refactor into Component -->
             <md-dialog :md-active.sync="showDialog">
-                <md-dialog-title>New receipt</md-dialog-title>
+                <md-dialog-title>New prescription</md-dialog-title>
 
                 <md-dialog-content>
                     <div class="md-layout-item">

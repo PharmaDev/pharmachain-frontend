@@ -62,13 +62,13 @@
                                     <template slot="md-tab" slot-scope="{ tab }">
                                         {{ tab.label }} <i class="badge" v-if="tab.data.badge">{{ tab.data.badge }}</i>
                                     </template>
-                                    <md-tab id="tab-receipts" md-label="My Receipts"></md-tab>
-                                    <md-tab id="tab-offers" md-label="Offers"></md-tab>
+                                    <md-tab id="tab-receipts" md-label="My Prescription"></md-tab>
+                                    <md-tab id="tab-offers" md-label="My Offers"></md-tab>
                                 </md-tabs>
                             </md-card>
                             <!-- Tab Receipts -->
                             <div v-if="currentTab == 'tab-receipts'">
-                                <p class="md-display-2" style="margin: 15px; display: inline-block">My Receipts</p>
+                                <p class="md-display-2" style="margin: 15px; display: inline-block">My Prescription</p>
                                 <md-field style="float: right; margin-right: 15px; width: 150px">
                                     <md-select v-model="status" name="status" id="country" placeholder="Status">
                                         <md-option value="open">open</md-option>
@@ -128,14 +128,14 @@
                             </div>
                             <!-- Offer View -->
                             <div v-if="currentTab == 'tab-offers'">
-                                <p class="md-display-2" style="margin: 15px; display: inline-block">Offers</p>
+                                <p class="md-display-2" style="margin: 15px; display: inline-block">My Offers</p>
                                 <md-card style="margin-bottom: 15px;" v-for="offer in open_offers">
                                     <div>
                                         <md-card-content style="padding-bottom: 5px">
-                                            <p class="md-title">{{offer.name}}</p>
+                                            <p class="md-title">Brand name: {{offer.producer}}</p>
                                             <p class="md-body-1">Delivery: {{offer.deliveryDetails}}</p>
                                             <p class="md-body-1">Pharmacy: {{offer.pharmacy}}</p>
-                                            <p class="md-body-1">Price for Patient: {{offer.patientCost}} Euro</p>
+                                            <p class="md-body-1">Price: {{offer.patientCost}} Euro</p>
                                             <!-- TODO remove -->
                                             <!-- <md-badge v-if="true" class="md-square" :md-content="offer.dist"
                                                       style="background: green; top: 15px; right: 15px"></md-badge> -->

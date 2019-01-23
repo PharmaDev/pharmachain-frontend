@@ -38,22 +38,29 @@
                         <template slot="md-tab" slot-scope="{ tab }">
                             {{ tab.label }} <i class="badge" v-if="tab.data.badge">{{ tab.data.badge }}</i>
                         </template>
-                        <md-tab id="tab-receipts" md-label="Open receipts"></md-tab>
+                        <md-tab id="tab-receipts" md-label="Open Prescriptions"></md-tab>
                         <md-tab id="tab-deliveries" md-label="Offers"></md-tab>
                         <md-tab id="tab-billing" md-label="Billing"></md-tab>
                         <md-tab id="tab-statistics" md-label="Statistics"></md-tab>
                     </md-tabs>
                 </md-card>
                 <div v-if="currentTab == 'tab-receipts'">
-                    <p class="md-display-2" style="margin: 15px; display: inline-block">Open receipts</p>
+                    <p class="md-display-2" style="margin: 15px; display: inline-block">Open Prescriptions</p>
 
                     <md-card style="margin-bottom: 15px;" v-for="receipt in open_receipts" :key="receipt.id">
                         <div @click="selectOrder(receipt)">
                             <md-card-content style="padding-bottom: 15px">
-                                <p class="md-title">{{receipt.name}}, {{receipt.dosage}}, {{receipt.quantity}}</p>
+
+                                <md-card-content style="padding-bottom: 5px">
+                                    <p class="md-title" >{{receipt.deliveryStreet}}, {{receipt.deliveryPostal}} {{receipt.deliveryCity}} </p>
+                                    <p class="md-title" >{{receipt.name}}, {{receipt.dosage}}, {{receipt.quantity}}</p>
+                                    <p class="md-body-1">Presribed at: {{receipt.date}}</p>
+                                    <p class="md-body-1">Prescribed by: {{receipt.doctor}}</p>
+                                    <p class="md-body-1">Prescribed to: {{receipt.patient}}</p>
+                                    <md-button class="md-primary" @click="selectOption(receipt)">Create an Offer</md-button>
+                                </md-card-content>
                                 <!-- TODO replace with Patient Name / Doctor Name -->
-                                <p class="md-title">Prescribed by: {{receipt.doctor}}</p>
-                                <p class="md-title">Prescribed to: {{receipt.patient}}</p>
+
                                 <!-- <md-badge class="md-square" :md-content="receipt.dist" style="background: green; top: 15px; right: 15px"></md-badge> -->
                             </md-card-content>
                         </div>
@@ -71,24 +78,20 @@
                         <md-card style="margin-bottom: 15px;" v-for="offer in open_offers" :key="offer.id">
                             <div>
                                 <md-card-content style="padding-bottom: 15px">
-                                    <p class="md-title">{{offer.description}}</p>
+                                    <p class="md-title">Prescription ID: {{offer.receipt}}</p>
                                     <p>
-                                        <span class="md-body-2">Price: </span>
-                                        <span class="md-body-1">I:{{offer.insuranceCost}} / P{{offer.patientCost}}</span>
+                                        <span class="md-body-2">Brand name: </span>
+                                        <span class="md-body-1">{{offer.description}}</span>
                                     </p>
                                     <p>
                                         <span class="md-body-2">Delivery: </span>
-                                        <span class="md-body-1">{{offer.delivery}}</span>
+                                        <span class="md-body-1">{{offer.deliveryDetails}}</span>
                                     </p>
                                     <p>
-                                        <span class="md-body-2">Producer/Version: </span>
-                                        <span class="md-body-1">{{offer.details}}</span>
+                                        <span class="md-body-2">Price: </span>
+                                        <span class="md-body-1">Insurance:{{offer.insuranceCost}} | Patient:{{offer.patientCost}}</span>
                                     </p>
-                                    <p>
-                                        <span class="md-body-2">Address: </span>
-                                        <span class="md-body-1">{{offer.address}}</span>
-                                    </p>
-                                    <md-badge class="md-square" :md-content="offer.delivery" style="background: green; top: 15px; right: 15px"></md-badge>
+                                    <!-- <md-badge class="md-square" :md-content="offer.delivery" style="background: green; top: 15px; right: 15px"></md-badge> -->
                                     <md-button v-on:click="delete_offer(offer)" style="background: red">Delete
                                     </md-button>
                                 </md-card-content>
@@ -99,24 +102,20 @@
                         <md-card style="margin-bottom: 15px;" v-for="offer in archived_offers" :key="offer.id">
                             <div>
                                 <md-card-content style="padding-bottom: 15px">
-                                    <p class="md-title">{{offer.description}}</p>
+                                    <p class="md-title">Prescription ID: {{offer.receipt}}</p>
                                     <p>
-                                        <span class="md-body-2">Price: </span>
-                                        <span class="md-body-1">I:{{offer.insuranceCost}} / P{{offer.patientCost}}</span>
+                                        <span class="md-body-2">Brand name: </span>
+                                        <span class="md-body-1">{{offer.description}}</span>
                                     </p>
                                     <p>
                                         <span class="md-body-2">Delivery: </span>
-                                        <span class="md-body-1">{{offer.delivery}}</span>
+                                        <span class="md-body-1">{{offer.deliveryDetails}}</span>
                                     </p>
                                     <p>
-                                        <span class="md-body-2">Producer/Version: </span>
-                                        <span class="md-body-1">{{offer.details}}</span>
+                                        <span class="md-body-2">Price: </span>
+                                        <span class="md-body-1">Insurance:{{offer.insuranceCost}} | Patient:{{offer.patientCost}}</span>
                                     </p>
-                                    <p>
-                                        <span class="md-body-2">Address: </span>
-                                        <span class="md-body-1">{{offer.address}}</span>
-                                    </p>
-                                    <md-badge class="md-square" :md-content="'Archived'" style="background: orange; top: 15px; right: 15px"></md-badge>
+                                    <!-- <md-badge class="md-square" :md-content="'Archived'" style="background: orange; top: 15px; right: 15px"></md-badge> -->
                                     <md-button v-on:click="delete_offer(offer)" style="background: red">Delete
                                     </md-button>
                                 </md-card-content>
@@ -156,7 +155,7 @@
 
                     <md-dialog-content>
                         <md-field>
-                            <label>Medication</label>
+                            <label>Brand name</label>
                             <md-select v-model="new_offer.manufacturer">
                                 <md-option v-for="manufacturer in offer_manufacturers" :value="manufacturer">
                                     {{ manufacturer }}
@@ -164,15 +163,15 @@
                             </md-select>
                         </md-field>
                         <md-field>
-                            <label>Delivery</label>
+                            <label>Delivery details</label>
                             <md-input v-model="new_offer.delivery"></md-input>
                         </md-field>
                         <md-field>
-                            <label>insuranceCost</label>
+                            <label>Insurance cost</label>
                             <md-input v-model="new_offer.insuranceCost"></md-input>
                         </md-field>
                         <md-field>
-                            <label>patientCost</label>
+                            <label>Patient cost</label>
                             <md-input v-model="new_offer.patientCost"></md-input>
                         </md-field>
                     </md-dialog-content>
